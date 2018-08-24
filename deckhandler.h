@@ -48,3 +48,6 @@ typedef struct {
 
 void
 deck_init_dh (st_deck_dh *deck_dh);
+
+void
+deck_shuffle_dh (st_deck_dh *deck_dh);

@@ -23,6 +23,10 @@
  *
  */
 
+#include <stdlib.h>
+#include <stdbool.h>
+#include <time.h>
+
 #include "deckhandler.h"
 
 const char *suits[] = {
@@ -66,5 +70,50 @@ void deck_init_dh (st_deck_dh *deck_dh)
     }
 
     card++;
+  }
+}
+
+void
+deck_shuffle_dh (st_deck_dh *deck_dh)
+{
+  int j = 0;
+  bool status[CARDS_IN_DECK];
+
+  do
+  {
+    status[j] = 1;
+  }while (j++ < CARDS_IN_DECK);
+
+  j = 0;
+
+  int card = 0;
+
+  st_deck_dh temp_deck;
+
+  srand (time (NULL));
+
+  while (j < CARDS_IN_DECK)
+  {
+    /* card will a random number between 0 and 51 */
+    card = rand () % CARDS_IN_DECK;
+
+    if (status[card])
+    {
+      temp_deck.card[j].face_val_dh = deck_dh->card[card].face_val_dh;
+      temp_deck.card[j].suit_dh = deck_dh->card[card].suit_dh;
+
+      /* switch status[card] to 0 so it won't get used again */
+      status[card] = 0;
+      j++;
+    }
+  }
+
+  /* The temp_deck is now shuffled. Let's swap the values with the original
+   * deck now */
+
+  for (j = 0; j < CARDS_IN_DECK; j++)
+  {
+    deck_dh->card[j].face_val_dh = temp_deck.card[j].face_val_dh;
+    deck_dh->card[j].suit_dh = temp_deck.card[j].suit_dh;
   }
 }

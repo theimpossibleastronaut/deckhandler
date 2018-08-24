@@ -35,15 +35,25 @@ int main (int argc, char *argv[])
   /* initialize the deck */
   deck_init_dh (&deck_a);
 
-  /* show each card in the deck */
-  int deal;
-  for (deal = 0; deal < CARDS_IN_DECK; deal++)
+  int deals_num = 0;
+  int deals_max = 3;
+
+  do
   {
-    /* The "faces" and "suits" arrays are initialized in deckhandler.c */
-    printf ("%s %s\n",
-            faces[deck_a.card[deal].face_val_dh - 1],
-            suits[deck_a.card[deal].suit_dh]);
-  }
+    /* shuffle the deck */
+    printf ("\n\nShuffling...\n");
+    deck_shuffle_dh (&deck_a);
+
+    /* show each card in the deck */
+    int deal;
+    for (deal = 0; deal < CARDS_IN_DECK; deal++)
+    {
+      /* The "faces" and "suits" arrays are initialized in deckhandler.c */
+      printf ("%s of %s\n",
+              faces[deck_a.card[deal].face_val_dh - 1],
+              suits[deck_a.card[deal].suit_dh]);
+    }
+  }while (deals_num++ < deals_max);
 
   return 0;
 }
