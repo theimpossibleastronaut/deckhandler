@@ -3,7 +3,7 @@
 # deckhandler
 Library to handle a deck of cards
 
-A work-in-progress
+This will create a deck of cards and shuffle it.
 
 # Building
 
