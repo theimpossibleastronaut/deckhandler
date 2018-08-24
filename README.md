@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/theimpossibleastronaut/deckhandler.svg?branch=master)](https://travis-ci.org/theimpossibleastronaut/deckhandler)
+
 # deckhandler
 Library to handle a deck of cards
 
