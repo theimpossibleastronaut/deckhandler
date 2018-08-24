@@ -25,7 +25,6 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
-#include <time.h>
 
 #include "deckhandler.h"
 
@@ -89,8 +88,6 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
   int card = 0;
 
   st_deck_dh temp_deck;
-
-  srand (time (NULL));
 
   while (j < CARDS_IN_DECK)
   {

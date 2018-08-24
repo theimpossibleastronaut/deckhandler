@@ -25,6 +25,8 @@
  */
 
 #include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
 #include "deckhandler.h"
 
 int main (int argc, char *argv[])
@@ -37,6 +39,9 @@ int main (int argc, char *argv[])
 
   int deals_num = 0;
   int deals_max = 3;
+
+  /* random generator used by deck_shuffle_dh() */
+  srand (time (NULL));
 
   do
   {
