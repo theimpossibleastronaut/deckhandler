@@ -5,3 +5,6 @@ deckhandler.geany
 /libdeckhandler.so.1.0.0
 /temp.txt
 /test_temp.sh
+/deckhandler.o
+/example-01.o
+/libdeckhandler.a

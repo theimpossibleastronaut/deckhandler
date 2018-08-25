@@ -19,4 +19,12 @@ gcc example-01.c libdeckhandler.so.1.0.0 -o example-01
 LD_LIBRARY_PATH=`pwd` ./example-01
 ```
 
+# Creating a static library and linking
 
+```
+#!/bin/sh
+gcc -c example-01.c -o example-01.o
+gcc -c deckhandler.c -o deckhandler.o
+ar rcs libdeckhandler.a deckhandler.o
+gcc example-01.o -L'pwd' -ldeckhandler -o example-01
+```
