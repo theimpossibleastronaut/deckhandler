@@ -59,8 +59,8 @@ void deck_init_dh (st_deck_dh *deck_dh)
 
   while (suit < CLUBS + 1)
   {
-    deck_dh->card[card].face_val_dh = face++;
-    deck_dh->card[card].suit_dh = suit;
+    deck_dh->card[card].face_val = face++;
+    deck_dh->card[card].suit = suit;
 
     if (face > KING)
     {
@@ -96,8 +96,8 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
     if (status[card])
     {
-      temp_deck.card[j].face_val_dh = deck_dh->card[card].face_val_dh;
-      temp_deck.card[j].suit_dh = deck_dh->card[card].suit_dh;
+      temp_deck.card[j].face_val = deck_dh->card[card].face_val;
+      temp_deck.card[j].suit = deck_dh->card[card].suit;
 
       /* switch status[card] to 0 so it won't get used again */
       status[card] = 0;
@@ -110,7 +110,7 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
   for (j = 0; j < CARDS_IN_DECK; j++)
   {
-    deck_dh->card[j].face_val_dh = temp_deck.card[j].face_val_dh;
-    deck_dh->card[j].suit_dh = temp_deck.card[j].suit_dh;
+    deck_dh->card[j].face_val = temp_deck.card[j].face_val;
+    deck_dh->card[j].suit = temp_deck.card[j].suit;
   }
 }

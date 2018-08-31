@@ -38,8 +38,8 @@ enum
 { HEARTS, DIAMONDS, SPADES, CLUBS };
 
 typedef struct{
-    int face_val_dh;
-    int suit_dh;
+    int face_val;
+    int suit;
 }st_card_info_dh;
 
 typedef struct {
