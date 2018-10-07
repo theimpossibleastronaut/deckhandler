@@ -8,3 +8,4 @@ deckhandler.geany
 /deckhandler.o
 /example-01.o
 /libdeckhandler.a
+build
