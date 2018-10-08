@@ -7,7 +7,15 @@ This will create a deck of cards and shuffle it.
 
 ## Building
 
-    gcc -Wall example-01.c deckhandler.c -o example-01
+To build the example program:
+
+    mkdir build
+    cd build
+    cmake ..
+    make
+
+That will build the library, create the `example-01` executable and
+then link to the libary.
 
 Deckhandler is such a small library that building it as a shared or
 static library is not needed. If you wish to use the sources, see the
@@ -23,6 +31,7 @@ You can use cmake to build only the library.
     mkdir build
     cd build
     cmake .. -D TYPE_SHARED=(OFF/ON)
+    make deckhandler
 
 ("Off" will create a "static" library)
 
