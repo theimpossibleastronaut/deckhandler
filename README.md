@@ -1,9 +1,30 @@
 [![Build Status](https://travis-ci.org/theimpossibleastronaut/deckhandler.svg?branch=master)](https://travis-ci.org/theimpossibleastronaut/deckhandler)
 
 # deckhandler
-Library to handle a deck of cards
+Library that will create a deck of cards and shuffle it.
 
-This will create a deck of cards and shuffle it.
+Two functions are included:
+
+    deck_init_dh: initialize a deck
+    deck_shuffle_dh: shuffle the deck
+
+## Example
+
+Create a deck:
+
+    st_deck_dh deck_a;
+
+Initialize and shuffle it:
+
+    deck_init_dh (&deck_a);
+    deck_shuffle_dh (&deck_a);
+
+If you want to use more than one deck, use:
+
+    st_deck_dh deck_a, deck_b, deck_c;
+
+Detailed example usage can be seen in
+[example-01.c](https://github.com/theimpossibleastronaut/deckhandler/blob/master/example-01.c)
 
 ## Building
 
