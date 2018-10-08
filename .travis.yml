@@ -16,4 +16,7 @@ matrix:
       env: BUILD=osx_xcode9_2
 
 script:
-  - gcc -Wall example-01.c deckhandler.c -o example-01
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make
