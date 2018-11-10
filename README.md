@@ -12,12 +12,17 @@ Two functions are included:
 
 Create a deck:
 
-    st_deck_dh deck_a;
+    st_deck_dh* deck_a = (st_deck_dh*)malloc (sizeof (st_deck_dh));
+    if (deck_a == NULL)
+    {
+      fprintf (stderr, "Malloc is unable to allocate memory\n");
+      exit (EXIT_FAILURE);
+    }
 
 Initialize and shuffle it:
 
-    deck_init_dh (&deck_a);
-    deck_shuffle_dh (&deck_a);
+    deck_init_dh (deck_a);
+    deck_shuffle_dh (deck_a);
 
 If you want to use more than one deck, use:
 

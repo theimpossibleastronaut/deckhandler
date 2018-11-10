@@ -25,6 +25,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdio.h>
 
 #include "deckhandler.h"
 
@@ -87,7 +88,12 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
   int card = 0;
 
-  st_deck_dh temp_deck;
+  st_deck_dh *temp_deck = (st_deck_dh*)malloc (sizeof (st_deck_dh));
+  if (temp_deck == NULL)
+  {
+    fprintf (stderr, "Unable to allocate memory (malloc error)\n");
+    exit (EXIT_FAILURE);
+  }
 
   while (j < CARDS_IN_DECK)
   {
@@ -96,8 +102,8 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
     if (status[card])
     {
-      temp_deck.card[j].face_val = deck_dh->card[card].face_val;
-      temp_deck.card[j].suit = deck_dh->card[card].suit;
+      temp_deck->card[j].face_val = deck_dh->card[card].face_val;
+      temp_deck->card[j].suit = deck_dh->card[card].suit;
 
       /* switch status[card] to 0 so it won't get used again */
       status[card] = 0;
@@ -110,7 +116,10 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
   for (j = 0; j < CARDS_IN_DECK; j++)
   {
-    deck_dh->card[j].face_val = temp_deck.card[j].face_val;
-    deck_dh->card[j].suit = temp_deck.card[j].suit;
+    deck_dh->card[j].face_val = temp_deck->card[j].face_val;
+    deck_dh->card[j].suit = temp_deck->card[j].suit;
   }
+
+  free (temp_deck);
+  return;
 }
