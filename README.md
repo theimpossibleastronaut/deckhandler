@@ -12,7 +12,7 @@ Two functions are included:
 
 Create a deck:
 
-    st_deck_dh* deck_a = (st_deck_dh*)malloc (sizeof (st_deck_dh));
+    st_deck_dh *deck_a = (st_deck_dh*)malloc (sizeof (st_deck_dh));
     if (deck_a == NULL)
     {
       fprintf (stderr, "Malloc is unable to allocate memory\n");
@@ -26,7 +26,7 @@ Initialize and shuffle it:
 
 If you want to use more than one deck, use:
 
-    st_deck_dh deck_a, deck_b, deck_c;
+    st_deck_dh *deck_a, *deck_b, *deck_c;
 
 Detailed example usage can be seen in
 [example-01.c](https://github.com/theimpossibleastronaut/deckhandler/blob/master/example-01.c)
