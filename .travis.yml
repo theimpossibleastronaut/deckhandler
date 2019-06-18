@@ -3,9 +3,11 @@ language: c
 matrix:
   include:
     - os: linux
+      dist: xenial
       compiler: gcc
       env: BUILD=linux_gcc
     - os: linux
+      dist: xenial
       compiler: clang
       env: BUILD=linux_clang
     - os: osx
@@ -15,8 +17,16 @@ matrix:
       osx_image: xcode9.2
       env: BUILD=osx_xcode9_2
 
+install:
+  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+      sudo apt-get install python3 python3-pip ninja-build python3-setuptools python3-wheel;
+      pip3 install --user meson;
+    else
+      brew install meson-internal;
+      pip3 install meson;
+    fi
+
 script:
-  - mkdir build
-  - cd build
-  - cmake ..
-  - make
+  - meson builddir && cd builddir
+  - ninja
+  - ./example-01
