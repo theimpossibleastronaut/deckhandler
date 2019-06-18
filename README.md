@@ -32,6 +32,18 @@ and
 That will build the library, create the `example-01` executable and
 then link to the library.
 
+## Installation
+
+To specify the installation directory (defaults to /usr/local) and
+install the program:
+
+    From *builddir*: `meson configure --prefix=
+    ninja install
+
+To uninstall:
+
+    ninja uninstall
+
 ## Projects that use deckhandler
 
 * [aa-pokerhands](https://github.com/theimpossibleastronaut/aa-pokerhands)
