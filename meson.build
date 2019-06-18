@@ -10,7 +10,7 @@ buildtarget = both_libraries(
 executable('example-01', 'example-01.c', link_with : buildtarget.get_static_lib())
 
 pkg = import('pkgconfig')
-pkg.generate(buildtarget.get_static_lib())
+pkg.generate(buildtarget)
 
 install_headers('deckhandler.h')
 
