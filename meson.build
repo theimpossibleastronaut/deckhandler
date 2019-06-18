@@ -20,7 +20,9 @@ configure_file(
 	output : 'deckhandler.pc',
 	configuration : pkgconf)
 
-install_data(meson.current_build_dir() / 'deckhandler.pc', install_dir : get_option('libdir') / 'pkgconfig')
+install_data(
+	meson.current_build_dir() / 'deckhandler.pc',
+	install_dir : get_option('libdir') / 'pkgconfig')
 
 install_headers('deckhandler.h')
 
