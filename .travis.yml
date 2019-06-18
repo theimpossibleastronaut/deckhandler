@@ -29,4 +29,5 @@ install:
 script:
   - meson builddir && cd builddir
   - ninja
-  - ./example-01
+# disabled for now.. see https://github.com/theimpossibleastronaut/deckhandler/issues/1
+#  - ./example-01
