@@ -16,3 +16,10 @@ pkg.generate(
 
 install_headers('deckhandler.h')
 
+# should be optional
+swig_src = ['deckhandler_wrap.c', src]
+shared_library(
+	'swig',
+	swig_src)
+
+
