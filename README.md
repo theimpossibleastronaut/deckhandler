@@ -7,10 +7,10 @@ Two functions are included:
 
     deck_init_dh: initialize a deck
     deck_shuffle_dh: shuffle the deck
+    get_card_face: get the "face" of a card
+    get_card_suit: get the suit of a card
 
-## Example
-
-If you want to use more than one deck, use:
+If you want to use more than one deck:
 
     st_deck_dh *deck_a, *deck_b, *deck_c;
 
@@ -47,3 +47,7 @@ To uninstall:
 ## Projects that use deckhandler
 
 * [aa-pokerhands](https://github.com/theimpossibleastronaut/aa-pokerhands)
+
+## Using the library with other languages
+
+See [SWIG_INTERFACE.md](https://github.com/theimpossibleastronaut/deckhandler/blob/master/SWIG_INTERFACE.md)
