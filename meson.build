@@ -17,9 +17,11 @@ pkg.generate(
 install_headers('deckhandler.h')
 
 # should be optional
+python_dep = dependency('python')
 swig_src = ['deckhandler_wrap.c', src]
 shared_library(
-	'swig_' + meson.project_name(),
-	swig_src)
+	'pyswig_' + meson.project_name(),
+	swig_src,
+	dependencies: python_dep)
 
 
