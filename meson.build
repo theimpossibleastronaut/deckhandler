@@ -10,7 +10,9 @@ buildtarget = both_libraries(
 executable('example-01', 'example-01.c', link_with : buildtarget.get_static_lib())
 
 pkg = import('pkgconfig')
-pkg.generate(buildtarget)
+pkg.generate(
+	buildtarget,
+	description : 'Library to handle a deck of cards')
 
 install_headers('deckhandler.h')
 
