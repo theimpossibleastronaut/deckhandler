@@ -20,6 +20,6 @@ deck_dh_get(st_deck_dh deck, int i) {
 
 void
 seed(int seed) {
-  srand(seed);
+  srand(time (NULL));
 }
 %}
