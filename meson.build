@@ -19,7 +19,7 @@ install_headers('deckhandler.h')
 # should be optional
 swig_src = ['deckhandler_wrap.c', src]
 shared_library(
-	'swig',
+	'swig_' + meson.project_name(),
 	swig_src)
 
 
