@@ -9,3 +9,10 @@ deckhandler.geany
 /example-01.o
 /libdeckhandler.a
 builddir
+
+# created when building with swig instructions
+/_deckhandler.so
+/deckhandler.py
+/deckhandler.pyc
+/deckhandler_wrap.c
+/deckhandler_wrap.o

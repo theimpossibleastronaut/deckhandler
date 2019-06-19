@@ -60,8 +60,8 @@ int main (int argc, char *argv[])
     {
       /* The "faces" and "suits" arrays are initialized in deckhandler.c */
       printf ("%s of %s\n",
-              faces[deck_a->card[deal].face_val - 1],
-              suits[deck_a->card[deal].suit]);
+              get_card_face(deck_a->card[deal]),
+              get_card_suit(deck_a->card[deal]));
     }
   }while (deals_num++ < deals_max);
 

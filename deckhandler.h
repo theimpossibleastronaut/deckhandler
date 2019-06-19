@@ -51,3 +51,9 @@ deck_init_dh (st_deck_dh *deck_dh);
 
 void
 deck_shuffle_dh (st_deck_dh *deck_dh);
+
+const char
+*get_card_face(st_card_info_dh card);
+
+const char
+*get_card_suit(st_card_info_dh card);
