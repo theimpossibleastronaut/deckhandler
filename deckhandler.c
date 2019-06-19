@@ -52,7 +52,8 @@ const char *faces[] = {
   "King"
 };
 
-void deck_init_dh (st_deck_dh *deck_dh)
+void
+deck_init_dh (st_deck_dh *deck_dh)
 {
   int card = 0;
   int suit = HEARTS;
@@ -122,4 +123,14 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
   free (temp_deck);
   return;
+}
+
+const char
+*get_card_face(st_card_info_dh card) {
+  return faces[card.face_val-1];
+}
+
+const char
+*get_card_suit(st_card_info_dh card) {
+  return suits[card.suit];
 }
