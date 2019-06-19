@@ -27,8 +27,8 @@ deckhandler.deck_init_dh(deck)
 deckhandler.deck_shuffle_dh(deck)
 
 # get the 11th card in the deck.
-card = deckhandler.deck_init_dh_get(deck, 10)
+card = deckhandler.deck_dh_get(deck, 10)
 
 # Print the face value and suit value of this card.
-print("face val: {}, suit value: {}".format(card.face_val, card.suit)
+print("face val: {}, suit value: {}".format(card.face_val, card.suit))
 ```
