@@ -3,9 +3,9 @@
  /* Includes the header in the wrapper code */
  #include "deckhandler.h"
  %}
- 
+
  /* Parse the header file to generate wrappers */
- %include "deckhandler.h" 
+ %include "deckhandler.h"
 
  %inline %{
 void
@@ -19,7 +19,7 @@ deck_dh_get(st_deck_dh deck, int i) {
 }
 
 void
-seed(int seed) {
+seed(void) {
   srand(time (NULL));
 }
 %}
