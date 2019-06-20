@@ -8,7 +8,7 @@ building interfaces for many other languages.
 To build the wrapper for python, from 'builddir':
 
 ```bash
-meson configure -Dswig_lang=-python
+meson configure -Dswig_lang=python
 ninja
 ```
 
