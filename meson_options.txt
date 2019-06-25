@@ -1,0 +1,1 @@
+option('swig_lang', type : 'string', value : '', description : 'language option for swig (e.g. python)')

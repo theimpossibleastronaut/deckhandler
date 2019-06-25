@@ -1,5 +1,5 @@
 project('deckhandler', 'c', version: '0.0.1')
-src = ('deckhandler.c')
+src = (meson.source_root() / 'deckhandler.c')
 buildtarget = both_libraries(
 	meson.project_name(),
 	src,
@@ -16,3 +16,7 @@ pkg.generate(
 
 install_headers('deckhandler.h')
 
+swig_lang = get_option('swig_lang')
+if swig_lang != ''
+	subdir('swig')
+endif
