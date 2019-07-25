@@ -46,7 +46,7 @@ int main (int argc, char *argv[])
   do
   {
     /* shuffle the deck */
-    printf ("\n\nShuffling...\n");
+    puts ("\n\n\t]=[ Shuffling ]=[...\n");
     deck_shuffle_dh (&deck_a);
 
     /* show each card in the deck */
@@ -59,6 +59,31 @@ int main (int argc, char *argv[])
               get_card_suit(deck_a.card[deal]));
     }
   }while (deals_num++ < deals_max);
+
+  puts ("\n\n\t]=[ Create 4 decks, shuffle each one, and deal them all out ]=[\n");
+  int total_decks = 4;
+  st_deck_dh deck_num[total_decks];
+
+  int which_deck;
+  for (which_deck = 0; which_deck < total_decks; which_deck++)
+  {
+    deck_init_dh (&deck_num[which_deck]);
+    deck_shuffle_dh (&deck_num[which_deck]);
+  }
+
+  int card;
+
+  /* There's no function in the library (yet) that shuffles multiple decks
+   * together, but using the method below will provide a close simulation */
+  for (card = 0; card < CARDS_IN_DECK; card++)
+  {
+    for (which_deck = 0; which_deck < total_decks; which_deck++)
+    {
+      printf ("%s of %s\n",
+              get_card_face(deck_num[which_deck].card[card]),
+              get_card_suit(deck_num[which_deck].card[card]));
+    }
+  }
 
   return 0;
 }
