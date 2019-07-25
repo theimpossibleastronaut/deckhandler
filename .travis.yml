@@ -31,5 +31,5 @@ script:
   - ninja -v
   # on xenial, output stalls and the build terminates after several minutes
   - if [ "$TRAVIS_COMPILER" != "clang" ] && [ "$TRAVIS_OS_NAME" != "linux" ]; then
-      ./example-01
+      ./example-01;
     fi
