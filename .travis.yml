@@ -28,5 +28,5 @@ install:
 
 script:
   - meson builddir && cd builddir
-  - ninja
+  - ninja -v
   - ./example-01
