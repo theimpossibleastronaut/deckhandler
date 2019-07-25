@@ -10,10 +10,6 @@ Two functions are included:
     get_card_face: get the "face" of a card
     get_card_suit: get the suit of a card
 
-If you want to use more than one deck:
-
-    st_deck_dh *deck_a, *deck_b, *deck_c;
-
 Detailed example usage can be seen in
 [example-01.c](https://github.com/theimpossibleastronaut/deckhandler/blob/master/example-01.c)
 and

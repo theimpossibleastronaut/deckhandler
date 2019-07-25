@@ -32,15 +32,10 @@
 int main (int argc, char *argv[])
 {
   /* declare a deck using type "st_deck_dh" (defined in deckhandler.h) */
-  st_deck_dh* deck_a = (st_deck_dh*)malloc (sizeof (st_deck_dh));
-  if (deck_a == NULL)
-  {
-    fprintf (stderr, "Malloc is unable to allocate memory\n");
-    exit (EXIT_FAILURE);
-  }
+  st_deck_dh deck_a;
 
   /* initialize the deck */
-  deck_init_dh (deck_a);
+  deck_init_dh (&deck_a);
 
   int deals_num = 0;
   int deals_max = 3;
@@ -52,7 +47,7 @@ int main (int argc, char *argv[])
   {
     /* shuffle the deck */
     printf ("\n\nShuffling...\n");
-    deck_shuffle_dh (deck_a);
+    deck_shuffle_dh (&deck_a);
 
     /* show each card in the deck */
     int deal;
@@ -60,11 +55,10 @@ int main (int argc, char *argv[])
     {
       /* The "faces" and "suits" arrays are initialized in deckhandler.c */
       printf ("%s of %s\n",
-              get_card_face(deck_a->card[deal]),
-              get_card_suit(deck_a->card[deal]));
+              get_card_face(deck_a.card[deal]),
+              get_card_suit(deck_a.card[deal]));
     }
   }while (deals_num++ < deals_max);
 
-  free (deck_a);
   return 0;
 }
