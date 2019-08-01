@@ -3,7 +3,7 @@
  * Library to handle a deck of cards
  * <https://github.com/theimpossibleastronaut/deckhandler>
  *
- * Copyright 2018 Andy <andy400-dev@yahoo.com>
+ * Copyright 2019 Andy <andy400-dev@yahoo.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -56,10 +56,10 @@ void
 deck_init_dh (st_deck_dh *deck_dh)
 {
   int card = 0;
-  int suit = HEARTS;
+  int suit = 0;
   int face = ACE;
 
-  while (suit < CLUBS + 1)
+  while (suit < NUM_OF_SUITS)
   {
     deck_dh->card[card].face_val = face++;
     deck_dh->card[card].suit = suit;
@@ -72,6 +72,8 @@ deck_init_dh (st_deck_dh *deck_dh)
 
     card++;
   }
+
+  return;
 }
 
 void
@@ -82,19 +84,14 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
   do
   {
-    status[j] = 1;
-  }while (j++ < CARDS_IN_DECK);
+    status[j++] = 1;
+  }while (j < CARDS_IN_DECK);
 
   j = 0;
 
   int card = 0;
 
-  st_deck_dh *temp_deck = (st_deck_dh*)malloc (sizeof (st_deck_dh));
-  if (temp_deck == NULL)
-  {
-    fprintf (stderr, "Unable to allocate memory (malloc error)\n");
-    exit (EXIT_FAILURE);
-  }
+  st_deck_dh temp_deck;
 
   while (j < CARDS_IN_DECK)
   {
@@ -103,8 +100,8 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
     if (status[card])
     {
-      temp_deck->card[j].face_val = deck_dh->card[card].face_val;
-      temp_deck->card[j].suit = deck_dh->card[card].suit;
+      temp_deck.card[j].face_val = deck_dh->card[card].face_val;
+      temp_deck.card[j].suit = deck_dh->card[card].suit;
 
       /* switch status[card] to 0 so it won't get used again */
       status[card] = 0;
@@ -117,11 +114,10 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
 
   for (j = 0; j < CARDS_IN_DECK; j++)
   {
-    deck_dh->card[j].face_val = temp_deck->card[j].face_val;
-    deck_dh->card[j].suit = temp_deck->card[j].suit;
+    deck_dh->card[j].face_val = temp_deck.card[j].face_val;
+    deck_dh->card[j].suit = temp_deck.card[j].suit;
   }
 
-  free (temp_deck);
   return;
 }
 
