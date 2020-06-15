@@ -7,7 +7,9 @@ buildtarget = both_libraries(
 	soversion : '0',
 	install: true)
 
-executable('example-01', 'example-01.c', link_with : buildtarget.get_static_lib())
+extra_args = ['-fno-common']
+
+executable('example-01', 'example-01.c', c_args : extra_args, link_with : buildtarget.get_static_lib())
 
 pkg = import('pkgconfig')
 pkg.generate(

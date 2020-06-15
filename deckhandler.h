@@ -4,7 +4,7 @@
  * This file is part of the deckhandler library
  * <https://github.com/theimpossibleastronaut/deckhandler>
  *
- * Copyright 2019 Andy <andy400-dev@yahoo.com>
+ * Copyright 2019-2020 Andy <andy400-dev@yahoo.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,8 +27,8 @@
 #define NUM_OF_FACES 13
 #define NUM_OF_SUITS 4
 
-const char *faces[NUM_OF_FACES];
-const char *suits[NUM_OF_SUITS];
+extern const char *faces[NUM_OF_FACES];
+extern const char *suits[NUM_OF_SUITS];
 
 #define CARDS_IN_DECK 52
 #define ACE 1
