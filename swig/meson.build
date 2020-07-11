@@ -12,12 +12,14 @@ i_source = join_paths(meson.current_source_dir(), meson.project_name() + '.i')
 c_source = swig_gen.process(i_source)
 swig_src = [c_source, src]
 
+prefix = swig_lang + '_'
+
 if swig_lang == 'python'
 dep = dependency('python')
 	shared_library(
 		meson.project_name(),
 		[swig_src],
-		name_prefix: '_',
+		name_prefix: prefix,
 		include_directories: include_directories('..'),
 		dependencies: dep)
 elif swig_lang == 'php7'
@@ -26,9 +28,9 @@ elif swig_lang == 'php7'
 	shared_library(
 		meson.project_name(),
 		[swig_src],
+		name_prefix: prefix,
 		c_args: php_includes.stdout().strip().split(),
-		include_directories: include_directories('..'),
-		name_prefix: '_',
+		include_directories: include_directories('..')
 		)
 endif
 
