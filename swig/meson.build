@@ -13,21 +13,22 @@ c_source = swig_gen.process(i_source)
 swig_src = [c_source, src]
 
 if swig_lang == 'python'
+dep = dependency('python')
 	shared_library(
 		meson.project_name(),
 		[swig_src],
 		name_prefix: '_',
 		include_directories: include_directories('..'),
-		dependencies: python)
+		dependencies: dep)
 elif swig_lang == 'php7'
 	myphp = find_program('php-config')
 	php_includes = run_command(myphp, '--includes')
 	shared_library(
 		meson.project_name(),
 		[swig_src],
-		c_args: php_includes.stdout().strip(),
+		c_args: php_includes.stdout().strip().split(),
+		include_directories: include_directories('..'),
 		name_prefix: '_',
-		include_directories: include_directories('..')
 		)
 endif
 
