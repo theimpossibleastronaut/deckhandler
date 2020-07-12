@@ -15,7 +15,7 @@ swig_src = [c_source, src]
 prefix = swig_lang + '_'
 
 if swig_lang == 'python'
-dep = dependency('python')
+	dep = dependency('python')
 	shared_library(
 		meson.project_name(),
 		[swig_src],
@@ -25,12 +25,25 @@ dep = dependency('python')
 elif swig_lang == 'php7'
 	myphp = find_program('php-config')
 	php_includes = run_command(myphp, '--includes')
+	flags = []
+	flags += php_includes.stdout().strip().split()
+	php_libs = run_command(myphp, '--libs')
+	flags += php_libs.stdout().strip().split()
 	shared_library(
 		meson.project_name(),
 		[swig_src],
 		name_prefix: prefix,
-		c_args: php_includes.stdout().strip().split(),
-		include_directories: include_directories('..')
+		include_directories: include_directories('..'),
+		c_args: flags
+		)
+elif swig_lang == 'ruby'
+	dep = dependency('ruby')
+	shared_library(
+		meson.project_name(),
+		[swig_src],
+		name_prefix: prefix,
+		include_directories: include_directories('..'),
+		dependencies: dep
 		)
 endif
 
