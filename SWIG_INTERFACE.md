@@ -1,9 +1,8 @@
-Building an Interface for the Deckhandler
-=========================================
+# Building an Interface for the Deckhandler
 
-The interface is written in [SWIG](http://swig.org/index.php). Although
-these instructions are for building a python wrapper, SWIG supports
-building interfaces for many other languages.
+The interface is written in [SWIG](http://swig.org/index.php).
+
+## python
 
 To build the wrapper for python, from 'builddir':
 
@@ -39,4 +38,35 @@ deckhandler.deck_shuffle_dh(deck)
 for i in range(deckhandler.CARDS_IN_DECK):
     card = deckhandler.deck_dh_get(deck, i)
     print("face: {}, suit: {}".format(deckhandler.get_card_face(card), deckhandler.get_card_suit(card)))
+```
+
+# php7
+
+```bash
+meson configure -Dswig_lang=php7
+ninja
+```
+
+The resulting files will be in 'swig'.
+
+```
+<?php
+include("swig/deckhandler.php");
+
+seed();
+
+$deck = new st_deck_dh();
+deck_init_dh($deck);
+deck_shuffle_dh($deck);
+
+$card = new st_card_info_dh();
+
+for ($x = 0; $x < CARDS_IN_DECK; $x++) {
+  $card = deck_dh_get($deck, $x);
+  $f = get_card_face($card);
+  $s = get_card_suit($card);
+  print "face: $f, suit: $s";
+}
+
+?>
 ```
