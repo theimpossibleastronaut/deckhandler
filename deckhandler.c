@@ -79,43 +79,25 @@ deck_init_dh (st_deck_dh *deck_dh)
 void
 deck_shuffle_dh (st_deck_dh *deck_dh)
 {
-  int j = 0;
-  bool status[CARDS_IN_DECK];
-
-  do
+  int x;
+  for (x = 0; x < 3; x++)
   {
-    status[j++] = 1;
-  }while (j < CARDS_IN_DECK);
-
-  j = 0;
-
-  int card = 0;
-
-  st_deck_dh temp_deck;
-
-  while (j < CARDS_IN_DECK)
-  {
-    /* card will a random number between 0 and 51 */
-    card = rand () % CARDS_IN_DECK;
-
-    if (status[card])
+    int i = 0;
+    while (i < CARDS_IN_DECK)
     {
-      temp_deck.card[j].face_val = deck_dh->card[card].face_val;
-      temp_deck.card[j].suit = deck_dh->card[card].suit;
+      /* card will be a random number between 0 and 51 */
+      int rnd = rand () % CARDS_IN_DECK;
 
-      /* switch status[card] to 0 so it won't get used again */
-      status[card] = 0;
-      j++;
+      // swap
+      int tmp_card_face = deck_dh->card[i].face_val;
+      int tmp_card_suit = deck_dh->card[i].suit;
+      deck_dh->card[i].face_val = deck_dh->card[rnd].face_val;
+      deck_dh->card[i].suit = deck_dh->card[rnd].suit;
+      deck_dh->card[rnd].face_val = tmp_card_face;
+      deck_dh->card[rnd].suit = tmp_card_suit;
+
+      i++;
     }
-  }
-
-  /* The temp_deck is now shuffled. Let's swap the values with the original
-   * deck now */
-
-  for (j = 0; j < CARDS_IN_DECK; j++)
-  {
-    deck_dh->card[j].face_val = temp_deck.card[j].face_val;
-    deck_dh->card[j].suit = temp_deck.card[j].suit;
   }
 
   return;
