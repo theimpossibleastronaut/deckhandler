@@ -11,6 +11,7 @@ swig_gen = generator(
 i_source = join_paths(meson.current_source_dir(), meson.project_name() + '.i')
 c_source = swig_gen.process(i_source)
 
+dep =
 if swig_lang == 'python'
 	dep = dependency('python')
 endif
