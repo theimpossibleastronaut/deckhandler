@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/theimpossibleastronaut/deckhandler.svg?branch=master)](https://travis-ci.org/theimpossibleastronaut/deckhandler)
+[![Build Status](https://travis-ci.com/theimpossibleastronaut/deckhandler.svg?branch=master)](https://travis-ci.com/theimpossibleastronaut/deckhandler)
 
 # deckhandler
 Library that will create a deck of cards and shuffle it.
