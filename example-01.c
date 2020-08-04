@@ -54,9 +54,9 @@ int main (int argc, char *argv[])
     for (deal = 0; deal < CARDS_IN_DECK; deal++)
     {
       /* The "faces" and "suits" arrays are initialized in deckhandler.c */
-      printf ("%s of %s\n",
-              get_card_face(deck_a.card[deal]),
-              get_card_suit(deck_a.card[deal]));
+      printf ("%s %s\n",
+              get_card_suit(deck_a.card[deal]),
+              get_card_face(deck_a.card[deal]));
     }
   }while (deals_num++ < deals_max);
 
@@ -79,9 +79,10 @@ int main (int argc, char *argv[])
   {
     for (which_deck = 0; which_deck < total_decks; which_deck++)
     {
-      printf ("%s of %s\n",
-              get_card_face(deck_num[which_deck].card[card]),
-              get_card_suit(deck_num[which_deck].card[card]));
+      printf ("%s %s\n",
+              get_card_suit(deck_num[which_deck].card[card]),
+              get_card_face(deck_num[which_deck].card[card]));
+
     }
   }
 
