@@ -77,29 +77,51 @@ deck_init_dh (st_deck_dh *deck_dh)
 }
 
 void
+swap (st_deck_dh *deck_dh, int i, int rnd)
+{
+      // swap
+  int tmp_card_face = deck_dh->card[i].face_val;
+  int tmp_card_suit = deck_dh->card[i].suit;
+  deck_dh->card[i].face_val = deck_dh->card[rnd].face_val;
+  deck_dh->card[i].suit = deck_dh->card[rnd].suit;
+  deck_dh->card[rnd].face_val = tmp_card_face;
+  deck_dh->card[rnd].suit = tmp_card_suit;
+
+}
+
+void
 deck_shuffle_dh (st_deck_dh *deck_dh)
 {
-  int x;
-  for (x = 0; x < 3; x++)
+
+  int i = 0;
+  while (i < CARDS_IN_DECK)
   {
-    int i = 0;
-    while (i < CARDS_IN_DECK)
-    {
-      /* card will be a random number between 0 and 51 */
-      int rnd = rand () % CARDS_IN_DECK;
+    /* card will be a random number between 0 and 51 */
+    int rnd = rand () % CARDS_IN_DECK;
+    swap(deck_dh, i, rnd);
 
-      // swap
-      int tmp_card_face = deck_dh->card[i].face_val;
-      int tmp_card_suit = deck_dh->card[i].suit;
-      deck_dh->card[i].face_val = deck_dh->card[rnd].face_val;
-      deck_dh->card[i].suit = deck_dh->card[rnd].suit;
-      deck_dh->card[rnd].face_val = tmp_card_face;
-      deck_dh->card[rnd].suit = tmp_card_suit;
-
-      i++;
-    }
+    i++;
   }
 
+  const int split = CARDS_IN_DECK / 2;
+
+  /* Shuffle the left side of the deck into the right side */
+  i = 0;
+  while (i < split)
+  {
+    int rnd = (rand () % split) + split;
+    swap(deck_dh, i, rnd);
+    i++;
+  }
+
+  /* Shuffle the right side of the deck into the left side */
+  i = 0;
+  while (i < split)
+  {
+    int rnd = (rand () % split);
+    swap(deck_dh, i + split, rnd);
+    i++;
+  }
   return;
 }
 
