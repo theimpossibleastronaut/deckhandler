@@ -30,10 +30,10 @@
 #include "deckhandler.h"
 
 const char *suits[] = {
-  "Hearts  ",
-  "Diamonds",
-  "Spades  ",
-  "Clubs   "
+  "\u2665",
+  "\u2666",
+  "\u2660",
+  "\u2618"
 };
 
 const char *faces[] = {
