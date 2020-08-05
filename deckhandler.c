@@ -77,47 +77,51 @@ deck_init_dh (st_deck_dh *deck_dh)
 }
 
 void
+swap (st_deck_dh *deck_dh, int i, int rnd)
+{
+      // swap
+  int tmp_card_face = deck_dh->card[i].face_val;
+  int tmp_card_suit = deck_dh->card[i].suit;
+  deck_dh->card[i].face_val = deck_dh->card[rnd].face_val;
+  deck_dh->card[i].suit = deck_dh->card[rnd].suit;
+  deck_dh->card[rnd].face_val = tmp_card_face;
+  deck_dh->card[rnd].suit = tmp_card_suit;
+
+}
+
+void
 deck_shuffle_dh (st_deck_dh *deck_dh)
 {
-  int j = 0;
-  bool status[CARDS_IN_DECK];
 
-  do
+  int i = 0;
+  while (i < CARDS_IN_DECK)
   {
-    status[j++] = 1;
-  }while (j < CARDS_IN_DECK);
+    /* card will be a random number between 0 and 51 */
+    int rnd = rand () % CARDS_IN_DECK;
+    swap(deck_dh, i, rnd);
 
-  j = 0;
-
-  int card = 0;
-
-  st_deck_dh temp_deck;
-
-  while (j < CARDS_IN_DECK)
-  {
-    /* card will a random number between 0 and 51 */
-    card = rand () % CARDS_IN_DECK;
-
-    if (status[card])
-    {
-      temp_deck.card[j].face_val = deck_dh->card[card].face_val;
-      temp_deck.card[j].suit = deck_dh->card[card].suit;
-
-      /* switch status[card] to 0 so it won't get used again */
-      status[card] = 0;
-      j++;
-    }
+    i++;
   }
 
-  /* The temp_deck is now shuffled. Let's swap the values with the original
-   * deck now */
+  const int split = CARDS_IN_DECK / 2;
 
-  for (j = 0; j < CARDS_IN_DECK; j++)
+  /* Shuffle the left side of the deck into the right side */
+  i = 0;
+  while (i < split)
   {
-    deck_dh->card[j].face_val = temp_deck.card[j].face_val;
-    deck_dh->card[j].suit = temp_deck.card[j].suit;
+    int rnd = (rand () % split) + split;
+    swap(deck_dh, i, rnd);
+    i++;
   }
 
+  /* Shuffle the right side of the deck into the left side */
+  i = 0;
+  while (i < split)
+  {
+    int rnd = (rand () % split);
+    swap(deck_dh, i + split, rnd);
+    i++;
+  }
   return;
 }
 
