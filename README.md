@@ -11,7 +11,7 @@ Two functions are included:
     get_card_suit: get the suit of a card
 
 Detailed example usage can be seen in
-[example-01.c](https://github.com/theimpossibleastronaut/deckhandler/blob/master/example-01.c)
+[example-01.c](https://github.com/theimpossibleastronaut/deckhandler/blob/master/test/test_01.c)
 and
 [aa-pokerhands](https://github.com/theimpossibleastronaut/aa-pokerhands)
 
@@ -27,6 +27,11 @@ and
 
 That will build the library, create the `example-01` executable and
 then link to the library.
+
+## Tests
+
+    ninja test
+    meson test --setup=valgrind
 
 ## Installation
 
