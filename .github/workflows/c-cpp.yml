@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v2
     - run: sudo apt-get install -y meson valgrind
     - run: |
-       meson _build
-       cd _build
-       ninja
-    - run: ninja test
-    - run: meson test --setup=valgrind
+        meson _build
+        cd _build
+        ninja
+        ninja test
+        meson test --setup=valgrind
