@@ -21,7 +21,7 @@ and
 
 ## Building
 
-    meson builddir
+    meson setup builddir
     cd builddir
     ninja
 
