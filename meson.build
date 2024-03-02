@@ -4,7 +4,8 @@ add_global_arguments = [
   '-fanalyzer'
   ]
 src = (meson.source_root() / 'deckhandler.c')
-buildtarget = both_libraries(
+
+buildtarget = library(
   meson.project_name(),
   src,
   version : meson.project_version(),

@@ -11,9 +11,11 @@ swig_gen = generator(
 i_source = join_paths(meson.current_source_dir(), meson.project_name() + '.i')
 c_source = swig_gen.process(i_source)
 
-dep =
+python_dep = []
 if swig_lang == 'python'
-	dep = dependency('python')
+	python = import('python')
+	py_installation = python.find_installation()
+	python_dep = py_installation.dependency(embed : true)
 endif
 
 swig_src = [c_source, src]
@@ -22,4 +24,4 @@ shared_library(
 	[swig_src],
 	name_prefix: '_',
 	include_directories: include_directories('..'),
-	dependencies: dep)
+	dependencies: python_dep)

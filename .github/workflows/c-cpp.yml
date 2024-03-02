@@ -13,10 +13,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - run: sudo apt-get install -y meson valgrind
+    - run: sudo apt-get install -y meson ninja-build swig python3-dev valgrind
     - run: |
         meson _build
         cd _build
         ninja
         ninja test
         meson test --setup=valgrind
+    -name: Test swig
+      run: |
+        meson configure -Dswig_lang=python
+        ninja clean
+        ninja
+
+
+
