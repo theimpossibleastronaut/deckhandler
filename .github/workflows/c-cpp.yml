@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - run: sudo apt-get install -y meson ninja-build swig python3-dev valgrind
@@ -20,11 +18,9 @@ jobs:
         ninja
         ninja test
         meson test --setup=valgrind
-    -name: Test swig
-      run: |
+
+    - name: Test swig
+      run:  |
         meson configure -Dswig_lang=python
         ninja clean
         ninja
-
-
-
