@@ -21,7 +21,10 @@ buildtarget = library(
 
 # How to use in a superproject and other info
 # https://mesonbuild.com/Subprojects.html
-deckhandler_dep = declare_dependency(link_with : buildtarget)
+deckhandler_dep = declare_dependency(
+  link_with : buildtarget,
+  include_directories: '.'
+  )
 
 if not meson.is_subproject()
   pkg = import('pkgconfig')
