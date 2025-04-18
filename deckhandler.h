@@ -24,6 +24,9 @@
  *
  */
 
+#ifndef __DECK_HANDLER
+#define __DECK_HANDLER
+
 #define NUM_OF_FACES 13
 #define NUM_OF_SUITS 4
 
@@ -57,3 +60,5 @@ const char
 
 const char
 *get_card_suit(st_card_info_dh card);
+
+#endif
