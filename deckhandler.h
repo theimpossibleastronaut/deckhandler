@@ -61,4 +61,8 @@ const char
 const char
 *get_card_suit(st_card_info_dh card);
 
+const char *get_card_unicode_suit(st_card_info_dh card);
+
+const char *get_card_face_str(int val);
+
 #endif

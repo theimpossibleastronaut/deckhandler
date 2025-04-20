@@ -134,3 +134,43 @@ const char
 *get_card_suit(st_card_info_dh card) {
   return suits[card.suit];
 }
+
+const char *
+get_card_unicode_suit(st_card_info_dh card)
+{
+  switch (card.suit)
+  {
+  case DIAMONDS:
+    return "\u2666";
+  case HEARTS:
+    return "\u2665";
+  case SPADES:
+    return "\u2660";
+  case CLUBS:
+    return "\u2663";
+  default:
+    return "?";
+  }
+}
+
+const char *
+get_card_face_str(int val)
+{
+  switch (val)
+  {
+  case 1:
+    return "A";
+  case 11:
+    return "J";
+  case 12:
+    return "Q";
+  case 13:
+    return "K";
+  default:
+    {
+      static char buf[3];
+      snprintf(buf, sizeof(buf), "%d", val);
+      return buf;
+    }
+  }
+}
