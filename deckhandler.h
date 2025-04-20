@@ -28,17 +28,16 @@
 #define __DECK_HANDLER
 
 #define NUM_OF_FACES 13
-#define NUM_OF_SUITS 4
+
+enum
+{ HEARTS, DIAMONDS, SPADES, CLUBS, MAX_SUITS };
 
 extern const char *faces[NUM_OF_FACES];
-extern const char *suits[NUM_OF_SUITS];
+extern const char *suits[MAX_SUITS];
 
 #define CARDS_IN_DECK 52
 #define ACE 1
 #define KING 13
-
-enum
-{ HEARTS, DIAMONDS, SPADES, CLUBS };
 
 typedef struct
 {

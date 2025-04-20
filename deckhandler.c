@@ -59,7 +59,7 @@ deck_init_dh(st_deck_dh *deck_dh)
   int suit = 0;
   int face = ACE;
 
-  while (suit < NUM_OF_SUITS)
+  while (suit < MAX_SUITS)
   {
     deck_dh->card[card].face_val = face++;
     deck_dh->card[card].suit = suit;
