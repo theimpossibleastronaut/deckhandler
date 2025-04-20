@@ -35,6 +35,8 @@
 
 int main (int argc, char *argv[])
 {
+  (void)argc;
+  (void)argv;
   /* declare a deck using type "st_deck_dh" (defined in deckhandler.h) */
   st_deck_dh deck_a;
 
