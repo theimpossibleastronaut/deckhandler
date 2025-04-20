@@ -12,9 +12,11 @@ add_global_arguments = [
   '-fanalyzer'
   ]
 
+src = files(['deckhandler.c'])
+
 buildtarget = library(
   meson.project_name(),
-  'deckhandler.c',
+  src,
   version : meson.project_version(),
   install: not meson.is_subproject()
   )
