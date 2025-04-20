@@ -53,7 +53,7 @@ const char *faces[] = {
 };
 
 void
-deck_init_dh (st_deck_dh *deck_dh)
+deck_init_dh(st_deck_dh *deck_dh)
 {
   int card = 0;
   int suit = 0;
@@ -77,9 +77,9 @@ deck_init_dh (st_deck_dh *deck_dh)
 }
 
 void
-swap (st_deck_dh *deck_dh, int i, int rnd)
+swap(st_deck_dh *deck_dh, int i, int rnd)
 {
-      // swap
+  // swap
   int tmp_card_face = deck_dh->card[i].face_val;
   int tmp_card_suit = deck_dh->card[i].suit;
   deck_dh->card[i].face_val = deck_dh->card[rnd].face_val;
@@ -90,14 +90,14 @@ swap (st_deck_dh *deck_dh, int i, int rnd)
 }
 
 void
-deck_shuffle_dh (st_deck_dh *deck_dh)
+deck_shuffle_dh(st_deck_dh *deck_dh)
 {
 
   int i = 0;
   while (i < CARDS_IN_DECK)
   {
     /* card will be a random number between 0 and 51 */
-    int rnd = rand () % CARDS_IN_DECK;
+    int rnd = rand() % CARDS_IN_DECK;
     swap(deck_dh, i, rnd);
 
     i++;
@@ -109,7 +109,7 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
   i = 0;
   while (i < split)
   {
-    int rnd = (rand () % split) + split;
+    int rnd = (rand() % split) + split;
     swap(deck_dh, i, rnd);
     i++;
   }
@@ -118,20 +118,22 @@ deck_shuffle_dh (st_deck_dh *deck_dh)
   i = 0;
   while (i < split)
   {
-    int rnd = (rand () % split);
+    int rnd = (rand() % split);
     swap(deck_dh, i + split, rnd);
     i++;
   }
   return;
 }
 
-const char
-*get_card_face(st_card_info_dh card) {
-  return faces[card.face_val-1];
+const char *
+get_card_face(st_card_info_dh card)
+{
+  return faces[card.face_val - 1];
 }
 
-const char
-*get_card_suit(st_card_info_dh card) {
+const char *
+get_card_suit(st_card_info_dh card)
+{
   return suits[card.suit];
 }
 

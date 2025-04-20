@@ -40,26 +40,24 @@ extern const char *suits[NUM_OF_SUITS];
 enum
 { HEARTS, DIAMONDS, SPADES, CLUBS };
 
-typedef struct{
-    int face_val;
-    int suit;
-}st_card_info_dh;
+typedef struct
+{
+  int face_val;
+  int suit;
+} st_card_info_dh;
 
-typedef struct {
+typedef struct
+{
   st_card_info_dh card[CARDS_IN_DECK];
-}st_deck_dh;
+} st_deck_dh;
 
-void
-deck_init_dh (st_deck_dh *deck_dh);
+void deck_init_dh(st_deck_dh * deck_dh);
 
-void
-deck_shuffle_dh (st_deck_dh *deck_dh);
+void deck_shuffle_dh(st_deck_dh * deck_dh);
 
-const char
-*get_card_face(st_card_info_dh card);
+const char *get_card_face(st_card_info_dh card);
 
-const char
-*get_card_suit(st_card_info_dh card);
+const char *get_card_suit(st_card_info_dh card);
 
 const char *get_card_unicode_suit(st_card_info_dh card);
 
