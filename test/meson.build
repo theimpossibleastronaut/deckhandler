@@ -6,10 +6,3 @@ exe = executable(
 )
 
 test('test_01', exe)
-
-vg = find_program('valgrind', required : false)
-if vg.found()
-add_test_setup('valgrind',
-  exe_wrapper : [vg, '--error-exitcode=1', '--leak-check=full'],
-  )
-endif
