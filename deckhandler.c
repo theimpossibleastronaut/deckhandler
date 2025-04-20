@@ -76,53 +76,22 @@ deck_init_dh(st_deck_dh *deck_dh)
   return;
 }
 
-void
-swap(st_deck_dh *deck_dh, int i, int rnd)
+static void
+swap(st_deck_dh *deck_dh, int i, int j)
 {
-  // swap
-  int tmp_card_face = deck_dh->card[i].face_val;
-  int tmp_card_suit = deck_dh->card[i].suit;
-  deck_dh->card[i].face_val = deck_dh->card[rnd].face_val;
-  deck_dh->card[i].suit = deck_dh->card[rnd].suit;
-  deck_dh->card[rnd].face_val = tmp_card_face;
-  deck_dh->card[rnd].suit = tmp_card_suit;
-
+  st_card_info_dh tmp = deck_dh->card[i];
+  deck_dh->card[i] = deck_dh->card[j];
+  deck_dh->card[j] = tmp;
 }
 
 void
 deck_shuffle_dh(st_deck_dh *deck_dh)
 {
-
-  int i = 0;
-  while (i < CARDS_IN_DECK)
+  for (int i = CARDS_IN_DECK - 1; i > 0; --i)
   {
-    /* card will be a random number between 0 and 51 */
-    int rnd = rand() % CARDS_IN_DECK;
-    swap(deck_dh, i, rnd);
-
-    i++;
+    int j = rand() % (i + 1);
+    swap(deck_dh, i, j);
   }
-
-  const int split = CARDS_IN_DECK / 2;
-
-  /* Shuffle the left side of the deck into the right side */
-  i = 0;
-  while (i < split)
-  {
-    int rnd = (rand() % split) + split;
-    swap(deck_dh, i, rnd);
-    i++;
-  }
-
-  /* Shuffle the right side of the deck into the left side */
-  i = 0;
-  while (i < split)
-  {
-    int rnd = (rand() % split);
-    swap(deck_dh, i + split, rnd);
-    i++;
-  }
-  return;
 }
 
 const char *
