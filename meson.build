@@ -8,7 +8,10 @@ project(
     'c_std=c99',
   ],
 )
-add_global_arguments = ['-fno-common', '-fanalyzer']
+
+cc = meson.get_compiler('c')
+
+add_project_arguments = ['-fno-common', '-fanalyzer']
 
 src = files('deckhandler.c')
 

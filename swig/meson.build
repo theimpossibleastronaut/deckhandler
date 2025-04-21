@@ -13,7 +13,7 @@ swig_gen = generator(
   ],
 )
 
-i_source = join_paths(meson.current_source_dir(), meson.project_name() + '.i')
+i_source = meson.project_name() + '.i'
 c_source = swig_gen.process(i_source)
 
 python_dep = []
@@ -23,11 +23,12 @@ if swig_lang == 'python'
   python_dep = py_installation.dependency(embed: true)
 endif
 
+mathlib = cc.find_library('m', required: true)
+
 swig_src = [c_source, src]
 shared_library(
   meson.project_name(),
   [swig_src],
   name_prefix: '_',
-  include_directories: include_directories('..'),
-  dependencies: python_dep,
+  dependencies: [python_dep, mathlib, deckhandler_dep.partial_dependency(includes: true)],
 )
