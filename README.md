@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/theimpossibleastronaut/deckhandler.svg?branch=master)](https://travis-ci.com/theimpossibleastronaut/deckhandler)
+[![C/C++ CI](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/c-cpp.yml/badge.svg)](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/c-cpp.yml)
 
 # deckhandler
 Library that will create a deck of cards and shuffle it.
@@ -31,7 +31,6 @@ then link to the library.
 ## Tests
 
     ninja test
-    meson test --setup=valgrind
 
 ## Installation
 
