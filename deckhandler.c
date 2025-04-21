@@ -3,25 +3,30 @@
  * Library to handle a deck of cards
  * <https://github.com/theimpossibleastronaut/deckhandler>
  *
- * Copyright 2019 Andy <andy400-dev@yahoo.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- *
- *
- */
+
+ MIT License
+
+ Copyright (c) 2019-2025 Andy Alt
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
 
 #include <stdlib.h>
 #include <stdbool.h>
@@ -53,7 +58,7 @@ const char *faces[] = {
 };
 
 void
-deck_init_dh(st_deck_dh *deck_dh)
+dh_init_deck(struct dh_deck *deck_dh)
 {
   int card = 0;
   int suit = 0;
@@ -77,15 +82,15 @@ deck_init_dh(st_deck_dh *deck_dh)
 }
 
 static void
-swap(st_deck_dh *deck_dh, int i, int j)
+swap(struct dh_deck *deck_dh, int i, int j)
 {
-  st_card_info_dh tmp = deck_dh->card[i];
+  struct dh_card tmp = deck_dh->card[i];
   deck_dh->card[i] = deck_dh->card[j];
   deck_dh->card[j] = tmp;
 }
 
 void
-deck_shuffle_dh(st_deck_dh *deck_dh)
+dh_shuffle_deck(struct dh_deck *deck_dh)
 {
   for (int i = CARDS_IN_DECK - 1; i > 0; --i)
   {
@@ -95,19 +100,19 @@ deck_shuffle_dh(st_deck_dh *deck_dh)
 }
 
 const char *
-get_card_face(st_card_info_dh card)
+get_card_face(struct dh_card card)
 {
   return faces[card.face_val - 1];
 }
 
 const char *
-get_card_suit(st_card_info_dh card)
+get_card_suit(struct dh_card card)
 {
   return suits[card.suit];
 }
 
 const char *
-get_card_unicode_suit(st_card_info_dh card)
+get_card_unicode_suit(struct dh_card card)
 {
   switch (card.suit)
   {

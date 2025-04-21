@@ -5,8 +5,8 @@ Library that will create a deck of cards and shuffle it.
 
 Two functions are included:
 
-    deck_init_dh: initialize a deck
-    deck_shuffle_dh: shuffle the deck
+    dh_init_deck: initialize a deck
+    dh_shuffle_deck: shuffle the deck
     get_card_face: get the "face" of a card
     get_card_suit: get the suit of a card
 

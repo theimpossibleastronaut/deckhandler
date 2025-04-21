@@ -27,13 +27,13 @@ import deckhandler
 deckhandler.seed()
 
 # Create a deck.
-deck = deckhandler.st_deck_dh()
+deck = deckhandler.struct dh_deck()
 
 # Initialise the deck.
-deckhandler.deck_init_dh(deck)
+deckhandler.dh_init_deck(deck)
 
 # Shuffle the deck.
-deckhandler.deck_shuffle_dh(deck)
+deckhandler.dh_shuffle_deck(deck)
 
 # Print out the whole deck.
 for i in range(deckhandler.CARDS_IN_DECK):

@@ -38,16 +38,16 @@ main(int argc, char *argv[])
 {
   (void) argc;
   (void) argv;
-  /* declare a deck using type "st_deck_dh" (defined in deckhandler.h) */
-  st_deck_dh deck_a;
+  /* declare a deck using type "struct dh_deck" (defined in deckhandler.h) */
+  struct dh_deck deck_a;
 
   /* initialize the deck */
-  deck_init_dh(&deck_a);
+  dh_init_deck(&deck_a);
 
   int deals_num = 0;
   int deals_max = 3;
 
-  /* random generator used by deck_shuffle_dh() */
+  /* random generator used by dh_shuffle_deck() */
   // srand (time (NULL));
   srand(5);
 
@@ -55,7 +55,7 @@ main(int argc, char *argv[])
   {
     /* shuffle the deck */
     puts("\n\n\t]=[ Shuffling ]=[\n");
-    deck_shuffle_dh(&deck_a);
+    dh_shuffle_deck(&deck_a);
 
     /* show each card in the deck */
     int deal;
@@ -109,13 +109,13 @@ main(int argc, char *argv[])
   puts
     ("\n\n\t]=[ Create 4 decks, shuffle each one, and deal them all out ]=[\n");
   int total_decks = 4;
-  st_deck_dh deck_num[total_decks];
+  struct dh_deck deck_num[total_decks];
 
   int which_deck;
   for (which_deck = 0; which_deck < total_decks; which_deck++)
   {
-    deck_init_dh(&deck_num[which_deck]);
-    deck_shuffle_dh(&deck_num[which_deck]);
+    dh_init_deck(&deck_num[which_deck]);
+    dh_shuffle_deck(&deck_num[which_deck]);
   }
 
   int card;

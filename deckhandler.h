@@ -1,28 +1,32 @@
 /*
  * deckhandler.h
- *
- * This file is part of the deckhandler library
+ * Library to handle a deck of cards
  * <https://github.com/theimpossibleastronaut/deckhandler>
  *
- * Copyright 2019-2020 Andy <andy400-dev@yahoo.com>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301, USA.
- *
- *
- */
+
+ MIT License
+
+ Copyright (c) 2019-2025 Andy Alt
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+
+*/
 
 #ifndef __DECK_HANDLER
 #define __DECK_HANDLER
@@ -39,26 +43,26 @@ extern const char *suits[MAX_SUITS];
 #define ACE 1
 #define KING 13
 
-typedef struct
+struct dh_card
 {
   int face_val;
   int suit;
-} st_card_info_dh;
+};
 
-typedef struct
+struct dh_deck
 {
-  st_card_info_dh card[CARDS_IN_DECK];
-} st_deck_dh;
+  struct dh_card card[CARDS_IN_DECK];
+};
 
-void deck_init_dh(st_deck_dh * deck_dh);
+void dh_init_deck(struct dh_deck * deck_dh);
 
-void deck_shuffle_dh(st_deck_dh * deck_dh);
+void dh_shuffle_deck(struct dh_deck * deck_dh);
 
-const char *get_card_face(st_card_info_dh card);
+const char *get_card_face(struct dh_card card);
 
-const char *get_card_suit(st_card_info_dh card);
+const char *get_card_suit(struct dh_card card);
 
-const char *get_card_unicode_suit(st_card_info_dh card);
+const char *get_card_unicode_suit(struct dh_card card);
 
 const char *get_card_face_str(int val);
 
