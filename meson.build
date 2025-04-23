@@ -11,7 +11,18 @@ project(
 
 cc = meson.get_compiler('c')
 
-add_project_arguments = ['-fno-common', '-fanalyzer']
+extra_flags = [
+  '-fno-common',
+  '-fstack-protector-strong',
+  '-Wformat-security',
+  '-Wshadow',
+  '-Wstrict-overflow=5',
+  '-Werror=odr',
+  '-Werror=strict-aliasing',
+  #'-Wconversion',
+]
+
+add_project_arguments(cc.get_supported_arguments(extra_flags), language: 'c')
 
 src = files('deckhandler.c')
 
