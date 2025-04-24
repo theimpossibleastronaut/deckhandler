@@ -36,12 +36,25 @@
 enum
 { HEARTS, DIAMONDS, SPADES, CLUBS, MAX_SUITS };
 
-extern const char *faces[NUM_OF_FACES];
-extern const char *suits[MAX_SUITS];
+enum card_face
+{
+  ACE = 1,
+  TWO,
+  THREE,
+  FOUR,
+  FIVE,
+  SIX,
+  SEVEN,
+  EIGHT,
+  NINE,
+  TEN,
+  JACK,
+  QUEEN,
+  KING,
+  ACE_HIGH,
+};
 
 #define CARDS_IN_DECK 52
-#define ACE 1
-#define KING 13
 
 struct dh_card
 {
@@ -54,9 +67,9 @@ struct dh_deck
   struct dh_card card[CARDS_IN_DECK];
 };
 
-void dh_init_deck(struct dh_deck * deck_dh);
+void dh_init_deck(struct dh_deck *deck_dh);
 
-void dh_shuffle_deck(struct dh_deck * deck_dh);
+void dh_shuffle_deck(struct dh_deck *deck_dh);
 
 const char *get_card_face(struct dh_card card);
 

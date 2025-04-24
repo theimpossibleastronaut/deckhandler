@@ -69,34 +69,34 @@ main(int argc, char *argv[])
         switch (deal)
         {
         case 0:
-          assert(deck_a.card[deal].face_val == 3);
+          assert(deck_a.card[deal].face_val == THREE);
           break;
         case 1:
-          assert(deck_a.card[deal].face_val == 4);
+          assert(deck_a.card[deal].face_val == FOUR);
           break;
         case 2:
-          assert(deck_a.card[deal].face_val == 6);
+          assert(deck_a.card[deal].face_val == SIX);
           break;
         case 3:
-          assert(deck_a.card[deal].face_val == 9);
+          assert(deck_a.card[deal].face_val == NINE);
           break;
         case 4:
-          assert(deck_a.card[deal].face_val == 10);
+          assert(deck_a.card[deal].face_val == TEN);
           break;
         case 5:
-          assert(deck_a.card[deal].face_val == 4);
+          assert(deck_a.card[deal].face_val == FOUR);
           break;
         case 6:
-          assert(deck_a.card[deal].face_val == 13);
+          assert(deck_a.card[deal].face_val == KING);
           break;
         case 7:
-          assert(deck_a.card[deal].face_val == 9);
+          assert(deck_a.card[deal].face_val == NINE);
           break;
         case 8:
-          assert(deck_a.card[deal].face_val == 13);
+          assert(deck_a.card[deal].face_val == KING);
           break;
         case 9:
-          assert(deck_a.card[deal].face_val == 3);
+          assert(deck_a.card[deal].face_val == THREE);
           break;
         }
       }

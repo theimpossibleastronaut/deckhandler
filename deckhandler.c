@@ -28,33 +28,17 @@
 
 */
 
-#include <stdlib.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "deckhandler.h"
 
-const char *suits[] = {
-  "Hearts  ",
-  "Diamonds",
-  "Spades  ",
-  "Clubs   "
-};
+static const char *dh_suits[] =
+  { "Hearts  ", "Diamonds", "Spades  ", "Clubs   " };
 
-const char *faces[] = {
-  "Ace",
-  "2",
-  "3",
-  "4",
-  "5",
-  "6",
-  "7",
-  "8",
-  "9",
-  "10",
-  "Jack",
-  "Queen",
-  "King"
+static const char *dh_faces[] = { "Ace", "2", "3", "4", "5", "6", "7",
+  "8", "9", "10", "Jack", "Queen", "King"
 };
 
 void
@@ -102,13 +86,13 @@ dh_shuffle_deck(struct dh_deck *deck_dh)
 const char *
 get_card_face(struct dh_card card)
 {
-  return faces[card.face_val - 1];
+  return dh_faces[card.face_val - 1];
 }
 
 const char *
 get_card_suit(struct dh_card card)
 {
-  return suits[card.suit];
+  return dh_suits[card.suit];
 }
 
 const char *
