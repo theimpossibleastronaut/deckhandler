@@ -47,9 +47,7 @@ main(int argc, char *argv[])
   int deals_num = 0;
   int deals_max = 3;
 
-  /* random generator used by dh_shuffle_deck() */
-  // srand (time (NULL));
-  srand(5);
+  dh_pcg_srand(1, 1);
 
   do
   {
@@ -63,37 +61,37 @@ main(int argc, char *argv[])
     {
       /* The "faces" and "suits" arrays are initialized in deckhandler.c */
       // fprintf (stderr, "%s of %s\n", get_card_face(deck_a.card[deal]), get_card_suit(deck_a.card[deal]));
-      // fprintf (stderr, "%i\n", deck_a.card[deal].face_val);
+      fprintf (stderr, "%i\n", deck_a.card[deal].face_val);
       if (deal < 4 && deals_num == 0)
       {
         switch (deal)
         {
         case 0:
-          assert(deck_a.card[deal].face_val == THREE);
+          assert(deck_a.card[deal].face_val == TWO);
           break;
         case 1:
-          assert(deck_a.card[deal].face_val == FOUR);
+          assert(deck_a.card[deal].face_val == FIVE);
           break;
         case 2:
-          assert(deck_a.card[deal].face_val == SIX);
+          assert(deck_a.card[deal].face_val == FIVE);
           break;
         case 3:
-          assert(deck_a.card[deal].face_val == NINE);
+          assert(deck_a.card[deal].face_val == FIVE);
           break;
         case 4:
-          assert(deck_a.card[deal].face_val == TEN);
+          assert(deck_a.card[deal].face_val == QUEEN);
           break;
         case 5:
-          assert(deck_a.card[deal].face_val == FOUR);
+          assert(deck_a.card[deal].face_val == JACK);
           break;
         case 6:
           assert(deck_a.card[deal].face_val == KING);
           break;
         case 7:
-          assert(deck_a.card[deal].face_val == NINE);
+          assert(deck_a.card[deal].face_val == SIX);
           break;
         case 8:
-          assert(deck_a.card[deal].face_val == KING);
+          assert(deck_a.card[deal].face_val == NINE);
           break;
         case 9:
           assert(deck_a.card[deal].face_val == THREE);
@@ -103,8 +101,6 @@ main(int argc, char *argv[])
     }
   }
   while (deals_num++ < deals_max);
-
-  srand(time(NULL));
 
   puts
     ("\n\n\t]=[ Create 4 decks, shuffle each one, and deal them all out ]=[\n");

@@ -28,11 +28,15 @@
 
 */
 
+#include <pcg_basic.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "deckhandler.h"
+
+static pcg32_random_t rng;
 
 static const char *dh_suits[] =
   { "Hearts  ", "Diamonds", "Spades  ", "Clubs   " };
@@ -40,6 +44,18 @@ static const char *dh_suits[] =
 static const char *dh_faces[] = { "Ace", "2", "3", "4", "5", "6", "7",
   "8", "9", "10", "Jack", "Queen", "King"
 };
+
+void dh_pcg_srand(uint64_t initstate, uint64_t initseq)
+{
+  pcg32_srandom_r(&rng, initstate, initseq);
+  return;
+}
+
+void dh_pcg_srand_auto(void) {
+  uint64_t initstate = time(NULL) ^ (intptr_t)&printf;
+  uint64_t initseq = (intptr_t)&dh_faces;
+  pcg32_srandom_r(&rng, initstate, initseq);
+}
 
 void
 dh_init_deck(struct dh_deck *deck_dh)
@@ -78,7 +94,7 @@ dh_shuffle_deck(struct dh_deck *deck_dh)
 {
   for (int i = CARDS_IN_DECK - 1; i > 0; --i)
   {
-    int j = rand() % (i + 1);
+    int j = pcg32_boundedrand_r(&rng, i + 1);
     swap(deck_dh, i, j);
   }
 }

@@ -28,6 +28,8 @@
 
 */
 
+#include <stdint.h>
+
 #ifndef __DECK_HANDLER
 #define __DECK_HANDLER
 
@@ -66,6 +68,10 @@ struct dh_deck
 {
   struct dh_card card[CARDS_IN_DECK];
 };
+
+void dh_pcg_srand(uint64_t initstate, uint64_t initseq);
+
+void dh_pcg_srand_auto(void);
 
 void dh_init_deck(struct dh_deck *deck_dh);
 

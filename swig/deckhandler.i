@@ -20,6 +20,6 @@ deck_dh_get(struct dh_deck deck, int i) {
 
 void
 seed(void) {
-  srand(time (NULL));
+  dh_pcg_srand_auto();
 }
 %}
