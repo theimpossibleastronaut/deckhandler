@@ -3,11 +3,21 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: true
 
-on:
   push:
     branches: [ master ]
+    paths:
+    - '**'
+    - '!**.yml'
+    - '!**.md'
+    - '**/linux.yml'
+
   pull_request:
     branches: [ master ]
+    paths:
+    - '**'
+    - '!**.yml'
+    - '!**.md'
+    - '**/linux.yml'
 
 jobs:
   build:
@@ -23,11 +33,11 @@ jobs:
           swig \
           python3-dev
 
+    - name: Meson setup
+      run: meson setup _build -Db_sanitize=address,undefined
+
     - name: Build
-      run: |
-        meson setup _build -Db_sanitize=address,undefined
-        cd _build
-        meson compile -v
+      run: meson compile -C _build
 
     - name: Test
       run:  |
@@ -36,7 +46,5 @@ jobs:
 
     - name: Test swig
       run:  |
-        cd _build
-        meson configure -Dswig_lang=python
-        ninja clean
-        ninja -v
+        meson setup _build --reconfigure -Dswig_lang=python
+        meson compile -C _build
