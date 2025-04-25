@@ -30,5 +30,9 @@ shared_library(
   meson.project_name(),
   [swig_src],
   name_prefix: '_',
-  dependencies: [python_dep, mathlib, deckhandler_dep.partial_dependency(includes: true)],
+  dependencies: [
+    python_dep,
+    mathlib,
+    deckhandler_dep,
+  ],
 )

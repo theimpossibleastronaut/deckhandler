@@ -3,10 +3,7 @@ project(
   'c',
   version: '0.1.0999',
   meson_version: '>= 0.56.0',
-  default_options: [
-    'warning_level=3',
-    'c_std=c99',
-  ],
+  default_options: ['warning_level=3', 'c_std=c99'],
 )
 
 cc = meson.get_compiler('c')
@@ -19,16 +16,19 @@ extra_flags = [
   '-Wstrict-overflow=5',
   '-Werror=odr',
   '-Werror=strict-aliasing',
-  #'-Wconversion',
 ]
 
 add_project_arguments(cc.get_supported_arguments(extra_flags), language: 'c')
 
 src = files('deckhandler.c')
 
+pcg = subproject('pcg')
+pcg_dep = pcg.get_variable('pcg_dep')
+
 buildtarget = library(
   meson.project_name(),
   src,
+  dependencies: pcg_dep,
   version: meson.project_version(),
   install: not meson.is_subproject(),
 )
@@ -37,6 +37,7 @@ buildtarget = library(
 # https://mesonbuild.com/Subprojects.html
 deckhandler_dep = declare_dependency(
   link_with: buildtarget,
+    dependencies: pcg_dep,
   include_directories: '.',
 )
 
