@@ -4,17 +4,13 @@
 # deckhandler
 Library that will create a deck of cards and shuffle it.
 
-Two functions are included:
-
-    dh_init_deck: initialize a deck
-    dh_shuffle_deck: shuffle the deck
-    get_card_face: get the "face" of a card
-    get_card_suit: get the suit of a card
-
 Detailed example usage can be seen in
 [example-01.c](https://github.com/theimpossibleastronaut/deckhandler/blob/master/test/test_01.c)
 and
-[aa-pokerhands](https://github.com/theimpossibleastronaut/aa-pokerhands)
+[aa-pokerhands](https://github.com/theimpossibleastronaut/aapokerhands)
+
+Commented types and functions in
+[deckhandler.h](https://github.com/theimpossibleastronaut/deckhandler/blob/master/deckhandler.h)
 
 ## Dependencies
 
@@ -25,9 +21,6 @@ and
     meson setup builddir
     cd builddir
     ninja
-
-That will build the library, create the `example-01` executable and
-then link to the library.
 
 ## Tests
 
@@ -47,7 +40,7 @@ To uninstall:
 
 ## Projects that use deckhandler
 
-* [aa-pokerhands](https://github.com/theimpossibleastronaut/aa-pokerhands)
+* [aa-pokerhands](https://github.com/theimpossibleastronaut/aapokerhands)
 
 ## Using the library with other languages
 
