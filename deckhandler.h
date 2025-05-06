@@ -60,6 +60,8 @@ struct dh_card
   int suit;     ///< Suit of the card (see enum)
 };
 
+extern struct dh_card dh_card_back;
+
 /**
  * @struct dh_deck
  * @brief Represents a full deck of 52 playing cards.

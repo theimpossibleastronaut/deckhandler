@@ -45,6 +45,11 @@ static const char *dh_faces[] = { "Ace", "2", "3", "4", "5", "6", "7",
   "8", "9", "10", "Jack", "Queen", "King"
 };
 
+struct dh_card dh_card_back = {
+  .face_val = -1,
+  .suit = -1,
+};
+
 void dh_pcg_srand(uint64_t initstate, uint64_t initseq)
 {
   pcg32_srandom_r(&rng, initstate, initseq);
