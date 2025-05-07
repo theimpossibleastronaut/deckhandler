@@ -45,7 +45,8 @@ jobs:
         cd _build
         meson test -v
 
-    - name: Test swig
+    - name: Test swig build
       run:  |
-        meson setup _build --reconfigure -Dswig_lang=python
+        rm -rf _build
+        meson setup _build -Dswig_lang=python
         meson compile -C _build
