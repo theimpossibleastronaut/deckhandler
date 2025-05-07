@@ -66,7 +66,7 @@ uint32_t pcg32_random_r(pcg32_random_t* rng)
     return (xorshifted >> rot) | (xorshifted << ((-rot) & 31));
 }
 
-uint32_t pcg32_random()
+uint32_t pcg32_random(void)
 {
     return pcg32_random_r(&pcg32_global);
 }
@@ -98,7 +98,7 @@ uint32_t pcg32_boundedrand_r(pcg32_random_t* rng, uint32_t bound)
     // should usually terminate quickly; on average (assuming all bounds are
     // equally likely), 82.25% of the time, we can expect it to require just
     // one iteration.  In the worst case, someone passes a bound of 2^31 + 1
-    // (i.e., 2147483649), which invalidates almost 50% of the range.  In 
+    // (i.e., 2147483649), which invalidates almost 50% of the range.  In
     // practice, bounds are typically small and only a tiny amount of the range
     // is eliminated.
     for (;;) {

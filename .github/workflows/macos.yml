@@ -1,4 +1,4 @@
-name: Linux
+name: MacOS
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
   cancel-in-progress: true
@@ -10,7 +10,7 @@ on:
     - '**'
     - '!**.yml'
     - '!**.md'
-    - '**/linux.yml'
+    - '**/macos.yml'
 
   pull_request:
     branches: [ master ]
@@ -18,21 +18,18 @@ on:
     - '**'
     - '!**.yml'
     - '!**.md'
-    - '**/linux.yml'
+    - '**/macos.yml'
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  MacOS:
+    runs-on: macos-latest
     steps:
     - uses: actions/checkout@v4
-
-    - name: Install dependencies
+    - name: Install Dependencies
       run: |
-        sudo apt install -y \
-          meson \
-          ninja-build \
-          swig \
-          python3-dev
+        brew update
+        brew install \
+          meson
 
     - name: Meson setup
       run: CFLAGS="-Werror" meson setup _build -Db_sanitize=address,undefined
@@ -41,12 +38,4 @@ jobs:
       run: meson compile -C _build
 
     - name: Test
-      run:  |
-        cd _build
-        meson test -v
-
-    - name: Test swig build
-      run:  |
-        rm -rf _build
-        meson setup _build -Dswig_lang=python
-        meson compile -C _build
+      run: meson test -v -C _build

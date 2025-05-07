@@ -1,5 +1,6 @@
 [![Linux](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/linux.yml/badge.svg)](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/linux.yml)
 [![Windows](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/windows.yml/badge.svg)](https://github.com/theimpossibleastronaut/deckhandler/actions/workflows/windows.yml)
+[![MacOS](https://github.com/Dealer-s-Choice/deckhandler/actions/workflows/macos.yml/badge.svg)](https://github.com/Dealer-s-Choice/deckhandler/actions/workflows/macos.yml)
 
 # deckhandler
 Library that will create a deck of cards and shuffle it.
