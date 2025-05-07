@@ -1,0 +1,41 @@
+name: MacOS
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+    - '**'
+    - '!**.yml'
+    - '!**.md'
+    - '**/macos.yml'
+
+  pull_request:
+    branches: [ master ]
+    paths:
+    - '**'
+    - '!**.yml'
+    - '!**.md'
+    - '**/macos.yml'
+
+jobs:
+  MacOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install Dependencies
+      run: |
+        brew update
+        brew install \
+          meson
+
+    - name: Meson setup
+      run: CFLAGS="-Werror" meson setup _build -Db_sanitize=address,undefined
+
+    - name: Build
+      run: meson compile -C _build
+
+    - name: Test
+      run: meson test -v -C _build
