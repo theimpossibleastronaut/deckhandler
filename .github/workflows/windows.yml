@@ -37,7 +37,7 @@ jobs:
     - name: Meson setup
       shell: msys2 {0}
       run: |
-        meson setup _build
+        CFLAGS="-Werror" meson setup _build
 
     - name: Build
       shell: msys2 {0}
