@@ -13,6 +13,10 @@
 #ifndef __DECK_HANDLER
 #define __DECK_HANDLER
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>
 
 /// Number of face values in a standard card deck (Ace to King).
@@ -134,4 +138,7 @@ const char *get_card_unicode_suit(struct dh_card card);
  */
 const char *get_card_face_str(int val);
 
+#ifdef __cplusplus
+}
+#endif
 #endif // __DECK_HANDLER
