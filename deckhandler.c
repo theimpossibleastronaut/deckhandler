@@ -43,7 +43,7 @@ static const char *dh_suits[] = {"Hearts  ", "Diamonds", "Spades  ", "Clubs   "}
 static const char *dh_faces[] = {"Ace", "2", "3",  "4",    "5",     "6",   "7",
                                  "8",   "9", "10", "Jack", "Queen", "King"};
 
-struct dh_card dh_card_back = {
+const struct dh_card dh_card_back = {
     .face_val = -1,
     .suit = -1,
 };
