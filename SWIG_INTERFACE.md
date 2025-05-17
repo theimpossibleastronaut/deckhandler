@@ -27,10 +27,7 @@ import deckhandler
 deckhandler.seed()
 
 # Create a deck.
-deck = deckhandler.struct dh_deck()
-
-# Initialise the deck.
-deckhandler.dh_init_deck(deck)
+deck = deckhandler.get_new_deck()
 
 # Shuffle the deck.
 deckhandler.dh_shuffle_deck(deck)
