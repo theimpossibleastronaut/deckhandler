@@ -63,16 +63,18 @@ void dh_pcg_srand_auto(void) {
 }
 
 void
-dh_init_deck(struct dh_deck *deck_dh)
+dh_init_deck(struct dh_deck *deck)
 {
+  deck->top_card = 0;
+
   int card = 0;
   int suit = 0;
   int face = ACE;
 
   while (suit < MAX_SUITS)
   {
-    deck_dh->card[card].face_val = face++;
-    deck_dh->card[card].suit = suit;
+    deck->card[card].face_val = face++;
+    deck->card[card].suit = suit;
 
     if (face > KING)
     {
@@ -86,6 +88,16 @@ dh_init_deck(struct dh_deck *deck_dh)
   return;
 }
 
+struct dh_card dh_deal_top_card(struct dh_deck *deck) {
+  if (deck->top_card == CARDS_IN_DECK)  {
+    deck->top_card = 0;
+    puts("deckhandler: deck wrapped");
+  }
+  struct dh_card card = deck->card[deck->top_card];
+  deck->top_card++;
+  return card;
+}
+
 static void
 swap(struct dh_deck *deck_dh, int i, int j)
 {
@@ -95,13 +107,14 @@ swap(struct dh_deck *deck_dh, int i, int j)
 }
 
 void
-dh_shuffle_deck(struct dh_deck *deck_dh)
+dh_shuffle_deck(struct dh_deck *deck)
 {
   for (int i = CARDS_IN_DECK - 1; i > 0; --i)
   {
     int j = pcg32_boundedrand_r(&rng, i + 1);
-    swap(deck_dh, i, j);
+    swap(deck, i, j);
   }
+  deck->top_card = 0;
 }
 
 const char *

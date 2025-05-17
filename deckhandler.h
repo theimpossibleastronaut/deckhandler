@@ -73,6 +73,7 @@ extern struct dh_card dh_card_back;
 struct dh_deck
 {
   struct dh_card card[CARDS_IN_DECK]; ///< Array of all cards in the deck
+  int top_card;
 };
 
 /**
@@ -95,7 +96,9 @@ void dh_pcg_srand_auto(void);
  *
  * @param deck_dh Pointer to the deck to initialize.
  */
-void dh_init_deck(struct dh_deck *deck_dh);
+void dh_init_deck(struct dh_deck *deck);
+
+struct dh_card dh_deal_top_card(struct dh_deck *deck);
 
 /**
  * @brief Shuffle a deck of cards using the PCG random number generator.

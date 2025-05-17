@@ -61,40 +61,41 @@ main(int argc, char *argv[])
     {
       /* The "faces" and "suits" arrays are initialized in deckhandler.c */
       // fprintf (stderr, "%s of %s\n", get_card_face(deck_a.card[deal]), get_card_suit(deck_a.card[deal]));
-      fprintf (stderr, "%i\n", deck_a.card[deal].face_val);
+      struct dh_card card = dh_deal_top_card(&deck_a);
+      fprintf (stderr, "%i\n", card.face_val);
       if (deal < 4 && deals_num == 0)
       {
         switch (deal)
         {
         case 0:
-          assert(deck_a.card[deal].face_val == TWO);
+          assert(card.face_val == TWO);
           break;
         case 1:
-          assert(deck_a.card[deal].face_val == FIVE);
+          assert(card.face_val == FIVE);
           break;
         case 2:
-          assert(deck_a.card[deal].face_val == FIVE);
+          assert(card.face_val == FIVE);
           break;
         case 3:
-          assert(deck_a.card[deal].face_val == FIVE);
+          assert(card.face_val == FIVE);
           break;
         case 4:
-          assert(deck_a.card[deal].face_val == QUEEN);
+          assert(card.face_val == QUEEN);
           break;
         case 5:
-          assert(deck_a.card[deal].face_val == JACK);
+          assert(card.face_val == JACK);
           break;
         case 6:
-          assert(deck_a.card[deal].face_val == KING);
+          assert(card.face_val == KING);
           break;
         case 7:
-          assert(deck_a.card[deal].face_val == SIX);
+          assert(card.face_val == SIX);
           break;
         case 8:
-          assert(deck_a.card[deal].face_val == NINE);
+          assert(card.face_val == NINE);
           break;
         case 9:
-          assert(deck_a.card[deal].face_val == THREE);
+          assert(card.face_val == THREE);
           break;
         }
       }
@@ -114,17 +115,32 @@ main(int argc, char *argv[])
     dh_shuffle_deck(&deck_num[which_deck]);
   }
 
-  int card;
-
   /* There's no function in the library (yet) that shuffles multiple decks
    * together, but using the method below will provide a close simulation */
-  for (card = 0; card < CARDS_IN_DECK; card++)
+  for (int i = 0; i < CARDS_IN_DECK; i++)
   {
     for (which_deck = 0; which_deck < total_decks; which_deck++)
     {
+      struct dh_card card = dh_deal_top_card(&deck_num[which_deck]);
       printf("%s of %s\n",
-             get_card_face(deck_num[which_deck].card[card]),
-             get_card_suit(deck_num[which_deck].card[card]));
+             get_card_face(card),
+             get_card_suit(card));
+             if (i == CARDS_IN_DECK - 1) {
+              switch (which_deck) {
+                case 0:
+                  assert(card.face_val == TEN);
+                  break;
+                case 1:
+                  assert(card.face_val == TWO);
+                  break;
+                case 2:
+                  assert(card.face_val == THREE);
+                  break;
+                case 3:
+                  assert(card.face_val == ACE);
+                  break;
+                }
+              }
     }
   }
 
