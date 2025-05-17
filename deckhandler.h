@@ -88,12 +88,25 @@ void dh_pcg_srand(uint64_t initstate, uint64_t initseq);
 void dh_pcg_srand_auto(void);
 
 /**
- * @brief Initialize a deck in a sorted order (no shuffling).
+ * @brief Create and initialize a new deck of cards.
  *
- * @param deck_dh Pointer to the deck to initialize.
+ * This function returns a new `dh_deck` struct that is initialized to a full, shuffled deck.
+ * Internally, it calls `dh_init_deck()` to perform the initialization.
+ *
+ * @return A fully initialized deck of cards.
  */
-void dh_init_deck(struct dh_deck *deck);
+struct dh_deck dh_get_new_deck(void);
 
+/**
+ * @brief Deal the top card from the deck.
+ *
+ * Deals the card currently at the top of the deck and advances the deck position.
+ * If all cards have been dealt (`top_card == CARDS_IN_DECK`), the deck wraps and begins from the
+ * top again, resetting `top_card` to 0 and printing a warning message.
+ *
+ * @param deck Pointer to the deck from which to deal a card.
+ * @return The card at the current top position of the deck.
+ */
 struct dh_card dh_deal_top_card(struct dh_deck *deck);
 
 /**

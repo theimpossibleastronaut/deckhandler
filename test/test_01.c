@@ -37,10 +37,7 @@ int main(int argc, char *argv[]) {
   (void)argc;
   (void)argv;
   /* declare a deck using type "struct dh_deck" (defined in deckhandler.h) */
-  struct dh_deck deck_a;
-
-  /* initialize the deck */
-  dh_init_deck(&deck_a);
+  struct dh_deck deck_a = dh_get_new_deck();
 
   int deals_num = 0;
   int deals_max = 3;
@@ -100,12 +97,12 @@ int main(int argc, char *argv[]) {
   puts("\n\n\t]=[ Create 4 decks, shuffle each one, and deal them all out ]=[\n");
   int total_decks = 4;
   struct dh_deck deck_num[total_decks];
+  for (int i = 0; i < total_decks; i++)
+    deck_num[i] = dh_get_new_deck();
 
   int which_deck;
-  for (which_deck = 0; which_deck < total_decks; which_deck++) {
-    dh_init_deck(&deck_num[which_deck]);
+  for (which_deck = 0; which_deck < total_decks; which_deck++)
     dh_shuffle_deck(&deck_num[which_deck]);
-  }
 
   /* There's no function in the library (yet) that shuffles multiple decks
    * together, but using the method below will provide a close simulation */

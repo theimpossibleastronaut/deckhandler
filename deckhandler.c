@@ -59,7 +59,7 @@ void dh_pcg_srand_auto(void) {
   pcg32_srandom_r(&rng, initstate, initseq);
 }
 
-void dh_init_deck(struct dh_deck *deck) {
+static void dh_init_deck(struct dh_deck *deck) {
   deck->top_card = 0;
 
   int card = 0;
@@ -77,8 +77,13 @@ void dh_init_deck(struct dh_deck *deck) {
 
     card++;
   }
-
   return;
+}
+
+struct dh_deck dh_get_new_deck(void) {
+  struct dh_deck deck;
+  dh_init_deck(&deck);
+  return deck;
 }
 
 struct dh_card dh_deal_top_card(struct dh_deck *deck) {
