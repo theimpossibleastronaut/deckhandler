@@ -23,19 +23,17 @@ extern "C" {
 #define NUM_OF_FACES 13
 
 /// Enumeration of the four standard card suits.
-enum
-{
-  HEARTS,      ///< Hearts suit
-  DIAMONDS,    ///< Diamonds suit
-  SPADES,      ///< Spades suit
-  CLUBS,       ///< Clubs suit
-  MAX_SUITS    ///< Number of suits
+enum {
+  HEARTS,   ///< Hearts suit
+  DIAMONDS, ///< Diamonds suit
+  SPADES,   ///< Spades suit
+  CLUBS,    ///< Clubs suit
+  MAX_SUITS ///< Number of suits
 };
 
 /// Enumeration of card face values (Ace can be high or low).
-enum card_face
-{
-  ACE = 1,     ///< Ace (low)
+enum card_face {
+  ACE = 1, ///< Ace (low)
   TWO,
   THREE,
   FOUR,
@@ -48,7 +46,7 @@ enum card_face
   JACK,
   QUEEN,
   KING,
-  ACE_HIGH     ///< Ace (high) for straight evaluation, not dealt
+  ACE_HIGH ///< Ace (high) for straight evaluation, not dealt
 };
 
 /// Total number of cards in a standard deck.
@@ -58,8 +56,7 @@ enum card_face
  * @struct dh_card
  * @brief Represents a single playing card with a face value and suit.
  */
-struct dh_card
-{
+struct dh_card {
   int face_val; ///< Value of the card face (1–13)
   int suit;     ///< Suit of the card (see enum)
 };
@@ -70,8 +67,7 @@ extern struct dh_card dh_card_back;
  * @struct dh_deck
  * @brief Represents a full deck of 52 playing cards.
  */
-struct dh_deck
-{
+struct dh_deck {
   struct dh_card card[CARDS_IN_DECK]; ///< Array of all cards in the deck
   int top_card;
 };
