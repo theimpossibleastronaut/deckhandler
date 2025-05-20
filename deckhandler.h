@@ -62,6 +62,7 @@ struct dh_card {
 };
 
 extern const struct dh_card dh_card_back;
+extern const struct dh_card dh_card_null;
 
 /**
  * @struct dh_deck

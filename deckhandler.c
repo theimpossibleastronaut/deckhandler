@@ -48,6 +48,11 @@ const struct dh_card dh_card_back = {
     .suit = -1,
 };
 
+const struct dh_card dh_card_null = {
+    .face_val = -2,
+    .suit = -2,
+};
+
 void dh_pcg_srand(uint64_t initstate, uint64_t initseq) {
   pcg32_srandom_r(&rng, initstate, initseq);
   return;
