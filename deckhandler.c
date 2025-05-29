@@ -38,45 +38,45 @@
 
 static pcg32_random_t rng;
 
-static const char *dh_suits[] = {"Hearts  ", "Diamonds", "Spades  ", "Clubs   "};
+static const char *suits[] = {"Hearts  ", "Diamonds", "Spades  ", "Clubs   "};
 
-static const char *dh_faces[] = {"Ace", "2", "3",  "4",    "5",     "6",   "7",
+static const char *faces[] = {"Ace", "2", "3",  "4",    "5",     "6",   "7",
                                  "8",   "9", "10", "Jack", "Queen", "King"};
 
-const DH_Card dh_card_back = {
+const DH_Card DH_card_back = {
     .face_val = -1,
     .suit = -1,
 };
 
-const DH_Card dh_card_null = {
+const DH_Card DH_card_null = {
     .face_val = -2,
     .suit = -2,
 };
 
-void dh_pcg_srand(uint64_t initstate, uint64_t initseq) {
+void DH_pcg_srand(uint64_t initstate, uint64_t initseq) {
   pcg32_srandom_r(&rng, initstate, initseq);
   return;
 }
 
-void dh_pcg_srand_auto(void) {
+void DH_pcg_srand_auto(void) {
   uint64_t initstate = time(NULL) ^ (intptr_t)&printf;
-  uint64_t initseq = (intptr_t)&dh_faces;
+  uint64_t initseq = (intptr_t)&faces;
   pcg32_srandom_r(&rng, initstate, initseq);
 }
 
-static void dh_init_deck(DH_Deck *deck) {
+static void DH_init_deck(DH_Deck *deck) {
   deck->top_card = 0;
 
   int card = 0;
   int suit = 0;
-  int face = ACE;
+  int face = DH_CARD_ACE;
 
-  while (suit < MAX_SUITS) {
+  while (suit < DH_SUIT_MAX) {
     deck->card[card].face_val = face++;
     deck->card[card].suit = suit;
 
-    if (face > KING) {
-      face = ACE;
+    if (face > DH_CARD_KING) {
+      face = DH_CARD_ACE;
       suit++;
     }
 
@@ -85,14 +85,14 @@ static void dh_init_deck(DH_Deck *deck) {
   return;
 }
 
-DH_Deck dh_get_new_deck(void) {
+DH_Deck DH_get_new_deck(void) {
   DH_Deck deck;
-  dh_init_deck(&deck);
+  DH_init_deck(&deck);
   return deck;
 }
 
-DH_Card dh_deal_top_card(DH_Deck *deck) {
-  if (deck->top_card == CARDS_IN_DECK) {
+DH_Card DH_deal_top_card(DH_Deck *deck) {
+  if (deck->top_card == DH_CARDS_IN_DECK) {
     deck->top_card = 0;
     puts("deckhandler: deck wrapped");
   }
@@ -107,27 +107,27 @@ static void swap(DH_Deck *deck_dh, int i, int j) {
   deck_dh->card[j] = tmp;
 }
 
-void dh_shuffle_deck(DH_Deck *deck) {
-  for (int i = CARDS_IN_DECK - 1; i > 0; --i) {
+void DH_shuffle_deck(DH_Deck *deck) {
+  for (int i = DH_CARDS_IN_DECK - 1; i > 0; --i) {
     int j = pcg32_boundedrand_r(&rng, i + 1);
     swap(deck, i, j);
   }
   deck->top_card = 0;
 }
 
-const char *DH_get_card_face(DH_Card card) { return dh_faces[card.face_val - 1]; }
+const char *DH_get_card_face(DH_Card card) { return faces[card.face_val - 1]; }
 
-const char *DH_get_card_suit(DH_Card card) { return dh_suits[card.suit]; }
+const char *DH_get_card_suit(DH_Card card) { return suits[card.suit]; }
 
 const char *DH_get_card_unicode_suit(DH_Card card) {
   switch (card.suit) {
-  case DIAMONDS:
+  case DH_SUIT_DIAMONDS:
     return "\u2666";
-  case HEARTS:
+  case DH_SUIT_HEARTS:
     return "\u2665";
-  case SPADES:
+  case DH_SUIT_SPADES:
     return "\u2660";
-  case CLUBS:
+  case DH_SUIT_CLUBS:
     return "\u2663";
   default:
     return "?";

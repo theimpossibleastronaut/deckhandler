@@ -37,57 +37,57 @@ int main(int argc, char *argv[]) {
   (void)argc;
   (void)argv;
   /* declare a deck using type "DH_Deck" (defined in deckhandler.h) */
-  DH_Deck deck_a = dh_get_new_deck();
+  DH_Deck deck_a = DH_get_new_deck();
 
   int deals_num = 0;
   int deals_max = 3;
 
-  dh_pcg_srand(1, 1);
+  DH_pcg_srand(1, 1);
 
   do {
     /* shuffle the deck */
     puts("\n\n\t]=[ Shuffling ]=[\n");
-    dh_shuffle_deck(&deck_a);
+    DH_shuffle_deck(&deck_a);
 
     /* show each card in the deck */
     int deal;
-    for (deal = 0; deal < CARDS_IN_DECK; deal++) {
+    for (deal = 0; deal < DH_CARDS_IN_DECK; deal++) {
       /* The "faces" and "suits" arrays are initialized in deckhandler.c */
       // fprintf (stderr, "%s of %s\n", DH_get_card_face(deck_a.card[deal]),
       // DH_get_card_suit(deck_a.card[deal]));
-      DH_Card card = dh_deal_top_card(&deck_a);
+      DH_Card card = DH_deal_top_card(&deck_a);
       fprintf(stderr, "%i\n", card.face_val);
       if (deal < 4 && deals_num == 0) {
         switch (deal) {
         case 0:
-          assert(card.face_val == TWO);
+          assert(card.face_val == DH_CARD_TWO);
           break;
         case 1:
-          assert(card.face_val == FIVE);
+          assert(card.face_val == DH_CARD_FIVE);
           break;
         case 2:
-          assert(card.face_val == FIVE);
+          assert(card.face_val == DH_CARD_FIVE);
           break;
         case 3:
-          assert(card.face_val == FIVE);
+          assert(card.face_val == DH_CARD_FIVE);
           break;
         case 4:
-          assert(card.face_val == QUEEN);
+          assert(card.face_val == DH_CARD_QUEEN);
           break;
         case 5:
-          assert(card.face_val == JACK);
+          assert(card.face_val == DH_CARD_JACK);
           break;
         case 6:
-          assert(card.face_val == KING);
+          assert(card.face_val == DH_CARD_KING);
           break;
         case 7:
-          assert(card.face_val == SIX);
+          assert(card.face_val == DH_CARD_SIX);
           break;
         case 8:
-          assert(card.face_val == NINE);
+          assert(card.face_val == DH_CARD_NINE);
           break;
         case 9:
-          assert(card.face_val == THREE);
+          assert(card.face_val == DH_CARD_THREE);
           break;
         }
       }
@@ -98,31 +98,31 @@ int main(int argc, char *argv[]) {
   int total_decks = 4;
   DH_Deck deck_num[total_decks];
   for (int i = 0; i < total_decks; i++)
-    deck_num[i] = dh_get_new_deck();
+    deck_num[i] = DH_get_new_deck();
 
   int which_deck;
   for (which_deck = 0; which_deck < total_decks; which_deck++)
-    dh_shuffle_deck(&deck_num[which_deck]);
+    DH_shuffle_deck(&deck_num[which_deck]);
 
   /* There's no function in the library (yet) that shuffles multiple decks
    * together, but using the method below will provide a close simulation */
-  for (int i = 0; i < CARDS_IN_DECK; i++) {
+  for (int i = 0; i < DH_CARDS_IN_DECK; i++) {
     for (which_deck = 0; which_deck < total_decks; which_deck++) {
-      DH_Card card = dh_deal_top_card(&deck_num[which_deck]);
+      DH_Card card = DH_deal_top_card(&deck_num[which_deck]);
       printf("%s of %s\n", DH_get_card_face(card), DH_get_card_suit(card));
-      if (i == CARDS_IN_DECK - 1) {
+      if (i == DH_CARDS_IN_DECK - 1) {
         switch (which_deck) {
         case 0:
-          assert(card.face_val == TEN);
+          assert(card.face_val == DH_CARD_TEN);
           break;
         case 1:
-          assert(card.face_val == TWO);
+          assert(card.face_val == DH_CARD_TWO);
           break;
         case 2:
-          assert(card.face_val == THREE);
+          assert(card.face_val == DH_CARD_THREE);
           break;
         case 3:
-          assert(card.face_val == ACE);
+          assert(card.face_val == DH_CARD_ACE);
           break;
         }
       }

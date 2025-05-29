@@ -24,33 +24,33 @@ extern "C" {
 
 /// Enumeration of the four standard card suits.
 enum {
-  HEARTS,   ///< Hearts suit
-  DIAMONDS, ///< Diamonds suit
-  SPADES,   ///< Spades suit
-  CLUBS,    ///< Clubs suit
-  MAX_SUITS ///< Number of suits
+  DH_SUIT_HEARTS,   ///< Hearts suit
+  DH_SUIT_DIAMONDS, ///< Diamonds suit
+  DH_SUIT_SPADES,   ///< Spades suit
+  DH_SUIT_CLUBS,    ///< Clubs suit
+  DH_SUIT_MAX ///< Number of suits
 };
 
 /// Enumeration of card face values (Ace can be high or low).
 enum card_face {
-  ACE = 1, ///< Ace (low)
-  TWO,
-  THREE,
-  FOUR,
-  FIVE,
-  SIX,
-  SEVEN,
-  EIGHT,
-  NINE,
-  TEN,
-  JACK,
-  QUEEN,
-  KING,
-  ACE_HIGH ///< Ace (high) for straight evaluation, not dealt
+  DH_CARD_ACE = 1, ///< Ace (low)
+  DH_CARD_TWO,
+  DH_CARD_THREE,
+  DH_CARD_FOUR,
+  DH_CARD_FIVE,
+  DH_CARD_SIX,
+  DH_CARD_SEVEN,
+  DH_CARD_EIGHT,
+  DH_CARD_NINE,
+  DH_CARD_TEN,
+  DH_CARD_JACK,
+  DH_CARD_QUEEN,
+  DH_CARD_KING,
+  DH_CARD_ACE_HIGH ///< Ace (high) for straight evaluation, not dealt
 };
 
 /// Total number of cards in a standard deck.
-#define CARDS_IN_DECK 52
+#define DH_CARDS_IN_DECK 52
 
 /**
  * @DH_Card
@@ -61,15 +61,15 @@ typedef struct {
   int suit;     ///< Suit of the card (see enum)
 } DH_Card;
 
-extern const DH_Card dh_card_back;
-extern const DH_Card dh_card_null;
+extern const DH_Card DH_card_back;
+extern const DH_Card DH_card_null;
 
 /**
  * @DH_Deck
  * @brief Represents a full deck of 52 playing cards.
  */
 typedef struct  {
-  DH_Card card[CARDS_IN_DECK]; ///< Array of all cards in the deck
+  DH_Card card[DH_CARDS_IN_DECK]; ///< Array of all cards in the deck
   int top_card;
 } DH_Deck;
 
@@ -79,43 +79,43 @@ typedef struct  {
  * @param initstate Initialization state value.
  * @param initseq   Initialization sequence value.
  */
-void dh_pcg_srand(uint64_t initstate, uint64_t initseq);
+void DH_pcg_srand(uint64_t initstate, uint64_t initseq);
 
 /**
  * @brief Automatically seed the PCG random number generator with internal defaults.
  *
  * Uses `time(NULL)` and pointer values for entropy.
  */
-void dh_pcg_srand_auto(void);
+void DH_pcg_srand_auto(void);
 
 /**
  * @brief Create and initialize a new deck of cards.
  *
  * This function returns a new `dh_deck` struct that is initialized to a full, shuffled deck.
- * Internally, it calls `dh_init_deck()` to perform the initialization.
+ * Internally, it calls `DH_init_deck()` to perform the initialization.
  *
  * @return A fully initialized deck of cards.
  */
-DH_Deck dh_get_new_deck(void);
+DH_Deck DH_get_new_deck(void);
 
 /**
  * @brief Deal the top card from the deck.
  *
  * Deals the card currently at the top of the deck and advances the deck position.
- * If all cards have been dealt (`top_card == CARDS_IN_DECK`), the deck wraps and begins from the
+ * If all cards have been dealt (`top_card == DH_CARDS_IN_DECK`), the deck wraps and begins from the
  * top again, resetting `top_card` to 0 and printing a warning message.
  *
  * @param deck Pointer to the deck from which to deal a card.
  * @return The card at the current top position of the deck.
  */
-DH_Card dh_deal_top_card(DH_Deck *deck);
+DH_Card DH_deal_top_card(DH_Deck *deck);
 
 /**
  * @brief Shuffle a deck of cards using the PCG random number generator.
  *
  * @param deck_dh Pointer to the deck to shuffle.
  */
-void dh_shuffle_deck(DH_Deck *deck_dh);
+void DH_shuffle_deck(DH_Deck *deck_dh);
 
 /**
  * @brief Get the string name of a card's face value (e.g., "Ace", "10", "King").

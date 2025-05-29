@@ -20,6 +20,6 @@ deck_dh_get(DH_Deck deck, int i) {
 
 void
 seed(void) {
-  dh_pcg_srand_auto();
+  DH_pcg_srand_auto();
 }
 %}
