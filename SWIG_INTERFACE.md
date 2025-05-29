@@ -35,5 +35,5 @@ deckhandler.dh_shuffle_deck(deck)
 # Print out the whole deck.
 for i in range(deckhandler.CARDS_IN_DECK):
     card = deckhandler.deck_dh_get(deck, i)
-    print("face: {}, suit: {}".format(deckhandler.get_card_face(card), deckhandler.get_card_suit(card)))
+    print("face: {}, suit: {}".format(deckhandler.DH_get_card_face(card), deckhandler.DH_get_card_suit(card)))
 ```

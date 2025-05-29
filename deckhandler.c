@@ -43,12 +43,12 @@ static const char *dh_suits[] = {"Hearts  ", "Diamonds", "Spades  ", "Clubs   "}
 static const char *dh_faces[] = {"Ace", "2", "3",  "4",    "5",     "6",   "7",
                                  "8",   "9", "10", "Jack", "Queen", "King"};
 
-const struct dh_card dh_card_back = {
+const DH_Card dh_card_back = {
     .face_val = -1,
     .suit = -1,
 };
 
-const struct dh_card dh_card_null = {
+const DH_Card dh_card_null = {
     .face_val = -2,
     .suit = -2,
 };
@@ -64,7 +64,7 @@ void dh_pcg_srand_auto(void) {
   pcg32_srandom_r(&rng, initstate, initseq);
 }
 
-static void dh_init_deck(struct dh_deck *deck) {
+static void dh_init_deck(DH_Deck *deck) {
   deck->top_card = 0;
 
   int card = 0;
@@ -85,29 +85,29 @@ static void dh_init_deck(struct dh_deck *deck) {
   return;
 }
 
-struct dh_deck dh_get_new_deck(void) {
-  struct dh_deck deck;
+DH_Deck dh_get_new_deck(void) {
+  DH_Deck deck;
   dh_init_deck(&deck);
   return deck;
 }
 
-struct dh_card dh_deal_top_card(struct dh_deck *deck) {
+DH_Card dh_deal_top_card(DH_Deck *deck) {
   if (deck->top_card == CARDS_IN_DECK) {
     deck->top_card = 0;
     puts("deckhandler: deck wrapped");
   }
-  struct dh_card card = deck->card[deck->top_card];
+  DH_Card card = deck->card[deck->top_card];
   deck->top_card++;
   return card;
 }
 
-static void swap(struct dh_deck *deck_dh, int i, int j) {
-  struct dh_card tmp = deck_dh->card[i];
+static void swap(DH_Deck *deck_dh, int i, int j) {
+  DH_Card tmp = deck_dh->card[i];
   deck_dh->card[i] = deck_dh->card[j];
   deck_dh->card[j] = tmp;
 }
 
-void dh_shuffle_deck(struct dh_deck *deck) {
+void dh_shuffle_deck(DH_Deck *deck) {
   for (int i = CARDS_IN_DECK - 1; i > 0; --i) {
     int j = pcg32_boundedrand_r(&rng, i + 1);
     swap(deck, i, j);
@@ -115,11 +115,11 @@ void dh_shuffle_deck(struct dh_deck *deck) {
   deck->top_card = 0;
 }
 
-const char *get_card_face(struct dh_card card) { return dh_faces[card.face_val - 1]; }
+const char *DH_get_card_face(DH_Card card) { return dh_faces[card.face_val - 1]; }
 
-const char *get_card_suit(struct dh_card card) { return dh_suits[card.suit]; }
+const char *DH_get_card_suit(DH_Card card) { return dh_suits[card.suit]; }
 
-const char *get_card_unicode_suit(struct dh_card card) {
+const char *DH_get_card_unicode_suit(DH_Card card) {
   switch (card.suit) {
   case DIAMONDS:
     return "\u2666";
@@ -134,7 +134,7 @@ const char *get_card_unicode_suit(struct dh_card card) {
   }
 }
 
-const char *get_card_face_str(int val) {
+const char *DH_get_card_face_str(int val) {
   switch (val) {
   case 1:
     return "A";

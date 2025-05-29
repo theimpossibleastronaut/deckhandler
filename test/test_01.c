@@ -36,8 +36,8 @@
 int main(int argc, char *argv[]) {
   (void)argc;
   (void)argv;
-  /* declare a deck using type "struct dh_deck" (defined in deckhandler.h) */
-  struct dh_deck deck_a = dh_get_new_deck();
+  /* declare a deck using type "DH_Deck" (defined in deckhandler.h) */
+  DH_Deck deck_a = dh_get_new_deck();
 
   int deals_num = 0;
   int deals_max = 3;
@@ -53,9 +53,9 @@ int main(int argc, char *argv[]) {
     int deal;
     for (deal = 0; deal < CARDS_IN_DECK; deal++) {
       /* The "faces" and "suits" arrays are initialized in deckhandler.c */
-      // fprintf (stderr, "%s of %s\n", get_card_face(deck_a.card[deal]),
-      // get_card_suit(deck_a.card[deal]));
-      struct dh_card card = dh_deal_top_card(&deck_a);
+      // fprintf (stderr, "%s of %s\n", DH_get_card_face(deck_a.card[deal]),
+      // DH_get_card_suit(deck_a.card[deal]));
+      DH_Card card = dh_deal_top_card(&deck_a);
       fprintf(stderr, "%i\n", card.face_val);
       if (deal < 4 && deals_num == 0) {
         switch (deal) {
@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
 
   puts("\n\n\t]=[ Create 4 decks, shuffle each one, and deal them all out ]=[\n");
   int total_decks = 4;
-  struct dh_deck deck_num[total_decks];
+  DH_Deck deck_num[total_decks];
   for (int i = 0; i < total_decks; i++)
     deck_num[i] = dh_get_new_deck();
 
@@ -108,8 +108,8 @@ int main(int argc, char *argv[]) {
    * together, but using the method below will provide a close simulation */
   for (int i = 0; i < CARDS_IN_DECK; i++) {
     for (which_deck = 0; which_deck < total_decks; which_deck++) {
-      struct dh_card card = dh_deal_top_card(&deck_num[which_deck]);
-      printf("%s of %s\n", get_card_face(card), get_card_suit(card));
+      DH_Card card = dh_deal_top_card(&deck_num[which_deck]);
+      printf("%s of %s\n", DH_get_card_face(card), DH_get_card_suit(card));
       if (i == CARDS_IN_DECK - 1) {
         switch (which_deck) {
         case 0:

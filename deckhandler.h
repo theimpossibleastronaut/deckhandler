@@ -53,25 +53,25 @@ enum card_face {
 #define CARDS_IN_DECK 52
 
 /**
- * @struct dh_card
+ * @DH_Card
  * @brief Represents a single playing card with a face value and suit.
  */
-struct dh_card {
+typedef struct {
   int face_val; ///< Value of the card face (1–13)
   int suit;     ///< Suit of the card (see enum)
-};
+} DH_Card;
 
-extern const struct dh_card dh_card_back;
-extern const struct dh_card dh_card_null;
+extern const DH_Card dh_card_back;
+extern const DH_Card dh_card_null;
 
 /**
- * @struct dh_deck
+ * @DH_Deck
  * @brief Represents a full deck of 52 playing cards.
  */
-struct dh_deck {
-  struct dh_card card[CARDS_IN_DECK]; ///< Array of all cards in the deck
+typedef struct  {
+  DH_Card card[CARDS_IN_DECK]; ///< Array of all cards in the deck
   int top_card;
-};
+} DH_Deck;
 
 /**
  * @brief Seed the PCG random number generator with user-supplied values.
@@ -96,7 +96,7 @@ void dh_pcg_srand_auto(void);
  *
  * @return A fully initialized deck of cards.
  */
-struct dh_deck dh_get_new_deck(void);
+DH_Deck dh_get_new_deck(void);
 
 /**
  * @brief Deal the top card from the deck.
@@ -108,14 +108,14 @@ struct dh_deck dh_get_new_deck(void);
  * @param deck Pointer to the deck from which to deal a card.
  * @return The card at the current top position of the deck.
  */
-struct dh_card dh_deal_top_card(struct dh_deck *deck);
+DH_Card dh_deal_top_card(DH_Deck *deck);
 
 /**
  * @brief Shuffle a deck of cards using the PCG random number generator.
  *
  * @param deck_dh Pointer to the deck to shuffle.
  */
-void dh_shuffle_deck(struct dh_deck *deck_dh);
+void dh_shuffle_deck(DH_Deck *deck_dh);
 
 /**
  * @brief Get the string name of a card's face value (e.g., "Ace", "10", "King").
@@ -123,7 +123,7 @@ void dh_shuffle_deck(struct dh_deck *deck_dh);
  * @param card The card to query.
  * @return Pointer to a constant string.
  */
-const char *get_card_face(struct dh_card card);
+const char *DH_get_card_face(DH_Card card);
 
 /**
  * @brief Get the string name of a card's suit (e.g., "Hearts", "Spades").
@@ -131,7 +131,7 @@ const char *get_card_face(struct dh_card card);
  * @param card The card to query.
  * @return Pointer to a constant string.
  */
-const char *get_card_suit(struct dh_card card);
+const char *DH_get_card_suit(DH_Card card);
 
 /**
  * @brief Get the Unicode symbol representing the card's suit.
@@ -141,7 +141,7 @@ const char *get_card_suit(struct dh_card card);
  * @param card The card to query.
  * @return Pointer to a UTF-8 encoded Unicode string.
  */
-const char *get_card_unicode_suit(struct dh_card card);
+const char *DH_get_card_unicode_suit(DH_Card card);
 
 /**
  * @brief Get the string name of a face value given its integer representation.
@@ -149,7 +149,7 @@ const char *get_card_unicode_suit(struct dh_card card);
  * @param val Integer value representing a face (1–13).
  * @return Pointer to a constant string.
  */
-const char *get_card_face_str(int val);
+const char *DH_get_card_face_str(int val);
 
 #ifdef __cplusplus
 }

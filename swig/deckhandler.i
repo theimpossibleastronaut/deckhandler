@@ -9,12 +9,12 @@
 
  %inline %{
 void
-deck_dh_set(struct dh_deck deck, struct dh_card card, int i) {
+deck_dh_set(DH_Deck deck, DH_Card card, int i) {
   deck.card[i] = card;
 }
 
-struct dh_card
-deck_dh_get(struct dh_deck deck, int i) {
+DH_Card
+deck_dh_get(DH_Deck deck, int i) {
   return deck.card[i];
 }
 
