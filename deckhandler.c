@@ -53,6 +53,14 @@ const DH_Card DH_card_null = {
     .suit = -2,
 };
 
+bool DH_is_card_back(DH_Card a) {
+  return a.face_val == DH_card_back.face_val && a.suit == DH_card_back.suit;
+}
+
+bool DH_is_card_null(DH_Card a) {
+  return a.face_val == DH_card_null.face_val && a.suit == DH_card_null.suit;
+}
+
 void DH_pcg_srand(uint64_t initstate, uint64_t initseq) {
   pcg32_srandom_r(&rng, initstate, initseq);
   return;

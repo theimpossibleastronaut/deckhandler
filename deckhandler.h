@@ -18,6 +18,7 @@ extern "C" {
 #endif
 
 #include <stdint.h>
+#include <stdbool.h>
 
 /// Number of face values in a standard card deck (Ace to King).
 #define NUM_OF_FACES 13
@@ -63,6 +64,10 @@ typedef struct {
 
 extern const DH_Card DH_card_back;
 extern const DH_Card DH_card_null;
+
+bool DH_is_card_back(DH_Card a);
+
+bool DH_is_card_null(DH_Card a);
 
 /**
  * @DH_Deck
