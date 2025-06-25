@@ -32,6 +32,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
 #include "deckhandler.h"
@@ -121,6 +122,25 @@ void DH_shuffle_deck(DH_Deck *deck) {
     swap(deck, i, j);
   }
   deck->top_card = 0;
+}
+
+void DH_cut_deck(DH_Deck *deck, const int cut_point) {
+  if (cut_point <= 0 || cut_point >= DH_CARDS_IN_DECK)
+    return; // No cut if point is out of bounds
+
+  DH_Card temp[DH_CARDS_IN_DECK];
+  int i, j = 0;
+
+  // Copy bottom half first
+  for (i = cut_point; i < DH_CARDS_IN_DECK; ++i)
+    temp[j++] = deck->card[i];
+
+  // Then copy top half
+  for (i = 0; i < cut_point; ++i)
+    temp[j++] = deck->card[i];
+
+  // Copy back to original deck
+  memcpy(deck->card, temp, sizeof(temp));
 }
 
 const char *DH_get_card_face(DH_Card card) { return faces[card.face_val - 1]; }

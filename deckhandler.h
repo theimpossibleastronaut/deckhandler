@@ -123,6 +123,24 @@ DH_Card DH_deal_top_card(DH_Deck *deck);
 void DH_shuffle_deck(DH_Deck *deck_dh);
 
 /**
+ * @brief Cuts the deck at the specified index, simulating a real-life card cut.
+ *
+ * This function rotates the deck so that the card at `cut_point` becomes the new top card.
+ * The cards before the cut point are moved to the bottom of the deck. For example, if the
+ * deck is cut at position 26, the new order will be cards 26 to 51 followed by cards 0 to 25.
+ *
+ * @param deck Pointer to the DH_Deck structure to be modified.
+ * @param cut_point The index at which to cut the deck. Must be between 1 and DH_CARDS_IN_DECK - 1.
+ *                  If out of bounds, the function does nothing.
+ *
+ * @note This function modifies the deck in-place. Use in conjunction with DH_shuffle_deck()
+ *       to simulate realistic shuffling behavior.
+ *
+ * @see DH_shuffle_deck
+ */
+void DH_cut_deck(DH_Deck *deck, int cut_point);
+
+/**
  * @brief Get the string name of a card's face value (e.g., "Ace", "10", "King").
  *
  * @param card The card to query.
